@@ -88,6 +88,55 @@
 /* Кнопка закрытия профиля — ниже и удобнее для нажатия на телефоне */
 #profileModal .modal-card>.modal-close{top:48px;right:18px;width:42px;height:42px;z-index:5;display:grid;place-items:center;font-size:24px;touch-action:manipulation}
 @media(max-width:700px){#profileModal .modal-card>.modal-close{top:54px;right:14px;width:44px;height:44px}}
+
+/* Обновлённый кабинет KARY STORE — чистый dashboard и нижняя навигация поверх профиля */
+@media(max-width:640px){
+ body:has(#profileModal.open) .bottom-nav,
+ body:has(#supportModal.open) .bottom-nav{z-index:60}
+ #profileModal .modal-card{padding-bottom:104px!important;background:#f3f6fb;border:1px solid #e5ebf4;box-shadow:0 24px 70px rgba(7,25,52,.22)}
+ #profileModal .modal-card>.eyebrow{color:#6e829f;font-size:9px;letter-spacing:1.5px}
+ #profileModal .modal-card>h2{font-size:24px;letter-spacing:-.8px;margin:10px 46px 18px 0;color:#142b4a}
+ #profileContent:has(.profile-hero){gap:12px}
+ #profileContent:has(.profile-hero)>.profile-hero{padding:20px;border-radius:20px;box-shadow:0 12px 30px rgba(16,39,71,.16)}
+ #profileContent:has(.profile-hero)>.profile-contact{background:#fff;border:1px solid #e4eaf3;box-shadow:0 5px 18px rgba(19,48,91,.045);padding:16px;border-radius:17px;color:#193352}
+ #profileContent:has(.profile-hero)>.profile-contact b{font-size:13px;color:#193352}
+ #profileContent:has(.profile-hero)>.profile-contact span{color:#6e7f96;font-size:11px}
+ #profileContent:has(.profile-hero)>.profile-card,
+ #profileContent:has(.profile-hero)>.profile-section{background:#fff!important;color:#193352!important;border:1px solid #e4eaf3!important;box-shadow:0 5px 18px rgba(19,48,91,.045)!important;border-radius:17px!important;padding:16px!important}
+ #profileContent:has(.profile-hero)>.profile-card h3,
+ #profileContent:has(.profile-hero)>.profile-section h3{color:#193352!important;font-size:13px}
+ #profileContent:has(.profile-hero)>.profile-card p,
+ #profileContent:has(.profile-hero)>.profile-section p{color:#71819a!important}
+ #profileContent:has(.profile-hero)>.profile-personal-card .profile-form input{background:#f7f9fc!important;color:#193352!important;border:1px solid #e2e9f2!important}
+ #profileContent:has(.profile-hero)>.profile-card .profile-ref-link input{background:#f7f9fc!important;color:#193352!important;border:1px solid #e2e9f2!important}
+ #profileContent:has(.profile-hero)>.topup-panel,
+ #profileContent:has(.profile-hero)>.transfer-panel{border-radius:17px;padding:16px;box-shadow:0 8px 22px rgba(16,39,71,.10)}
+ #profileContent:has(.profile-hero)>.profile-section .order-card{background:#f7f9fc;border:1px solid #e7edf5;color:#193352}
+ #profileContent:has(.profile-hero)>.profile-section .order-card .order-top b{color:#193352}
+ #profileContent:has(.profile-hero)>.profile-section .order-card .order-items,
+ #profileContent:has(.profile-hero)>.profile-section .order-card .order-meta{color:#71819a}
+ #profileContent:has(.profile-hero)>.profile-form:has(.profile-logout) button{border-radius:13px;min-height:46px}
+ #profileModal .modal-card>.modal-close{top:49px!important;right:14px!important;background:#fff;border-color:#e3eaf3;color:#243c5c;box-shadow:0 3px 10px #10274712}
+ #supportModal.open~.bottom-nav{z-index:60}
+}
+@media(min-width:641px){
+ body:has(#profileModal.open) .bottom-nav,
+ body:has(#supportModal.open) .bottom-nav{z-index:60}
+ #profileModal .modal-card{background:#f3f6fb}
+ #profileModal .modal-card>h2{color:#142b4a;font-size:25px;letter-spacing:-.8px}
+ #profileContent:has(.profile-hero)>.profile-contact,
+ #profileContent:has(.profile-hero)>.profile-card,
+ #profileContent:has(.profile-hero)>.profile-section{box-shadow:0 5px 18px rgba(19,48,91,.045)}
+ #profileContent:has(.profile-hero)>.profile-contact{background:#fff}
+ #profileContent:has(.profile-hero)>.profile-card,
+ #profileContent:has(.profile-hero)>.profile-section{background:#fff!important;color:#193352!important;border:1px solid #e4eaf3!important}
+ #profileContent:has(.profile-hero)>.profile-card h3,
+ #profileContent:has(.profile-hero)>.profile-section h3{color:#193352!important}
+ #profileContent:has(.profile-hero)>.profile-card p,
+ #profileContent:has(.profile-hero)>.profile-section p{color:#71819a!important}
+ #profileModal .modal-card{padding-bottom:30px}
+}
+
 </style>
 </head>
 <body>
@@ -238,7 +287,7 @@ $('cartList').addEventListener('click',e=>{const q=e.target.closest('[data-qty]'
 $('favoritesTop').onclick=()=>{if(!favorites.size){toast('Избранное пока пусто');return}activeCategory='all';$('search').value='';renderCategories();renderProducts();$('products').innerHTML=products.filter(p=>favorites.has(p.id)).map(p=>{const c=categoryOf(p);return '<article class="product"><div class="product-media" data-open="'+p.id+'">'+(p.image_url?'<img src="'+esc(p.image_url)+'" alt="">':'<span class="product-placeholder">K_</span>')+'<button class="favorite active" data-fav="'+p.id+'">♥</button></div><div class="product-info"><span class="product-category">'+esc(c.name)+'</span><h3>'+esc(p.name)+'</h3><span class="sales-count">🛒 '+salesLabel(p.sales_count)+'</span><div class="product-foot"><span class="price">'+money(p.price)+'</span><button class="buy-btn" data-add="'+p.id+'">В корзину</button></div></div></article>'}).join('')||'<div class="empty">Избранное пусто</div>';document.querySelector('#catalog').scrollIntoView({behavior:'smooth'})};
 $('checkoutOpen').onclick=()=>{closeOverlay('cartOverlay');if(!customerSession){toast('Войди в профиль, чтобы оформить заказ');openProfile();return}$('balanceError').hidden=true;checkoutAttemptKey=null;openOverlay('checkoutModal')};$('sendOrder').onclick=sendOrder;
 document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>closeOverlay(b.dataset.close));document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeOverlay(m.id)}));document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeOverlay('cartOverlay');closeOverlay('productModal');closeOverlay('checkoutModal')}});
-$('navCatalog').onclick=()=>document.querySelector('#catalog').scrollIntoView({behavior:'smooth'});
+$('navCatalog').onclick=()=>{closeOverlay('profileModal');closeOverlay('supportModal');closeOverlay('productModal');closeOverlay('checkoutModal');closeOverlay('cartOverlay');setTimeout(()=>$('catalog').scrollIntoView({behavior:'smooth',block:'start'}),80)};
 
 const SUPPORT_URL=SUPABASE_URL+'/functions/v1/kary-support';
 let supportTicket=readStore('kary-support-ticket',null),supportPolling=null;
@@ -281,7 +330,7 @@ async function sendSupportMessage(){
  catch(e){toast(e.message||'Не удалось отправить сообщение')}
  finally{button.disabled=false;button.textContent='Отправить'}
 }
-$('navSupport').onclick=openSupport;$('supportSend').onclick=sendSupportMessage;
+$('navSupport').onclick=()=>{closeOverlay('profileModal');openSupport()};$('supportSend').onclick=sendSupportMessage;
 $('supportInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendSupportMessage()}});
 
 const AUTH_URL=SUPABASE_URL+'/functions/v1/kary-customer-auth';
@@ -333,7 +382,7 @@ async function refreshProfileOrders(){
  }catch{}
 }
 async function openProfile(){openOverlay('profileModal');if(customerSession){try{const data=await authRequest({action:'me',token:customerSession});customerUser=data.user;await renderProfile();return}catch{customerSession=null;localStorage.removeItem('kary-customer-session')}}renderProfile()}
-$('navProfile').onclick=openProfile;
+$('navProfile').onclick=()=>{closeOverlay('supportModal');openProfile()};
 if(customerSession){authRequest({action:'me',token:customerSession}).then(d=>{customerUser=d.user}).catch(()=>{customerSession=null;localStorage.removeItem('kary-customer-session')})}
 setInterval(()=>{if(supportTicket)pollSupport(false)},7000);
 setInterval(()=>{if($('profileModal').classList.contains('open'))refreshProfileOrders()},8000);
