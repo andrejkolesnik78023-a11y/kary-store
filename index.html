@@ -49,9 +49,9 @@
 <footer class="footer"><span>© 2026 KARY STORE. Все права защищены.</span><span>Поддержка и заказы: <a href="https://t.me/kar_y0" target="_blank" rel="noopener">@kar_y0</a></span></footer>
 </main>
 <nav class="bottom-nav" aria-label="Основная навигация"><button class="nav-item" id="navCatalog"><span class="ico">⌂</span>Каталог</button><button class="nav-item primary" id="navCart"><span class="ico">🛒</span>Корзина</button><a class="nav-item" href="https://t.me/kar_y0" target="_blank" rel="noopener"><span class="ico">↗</span>Продавец</a></nav>
-<div class="overlay" id="cartOverlay" aria-hidden="true"><aside class="drawer" role="dialog" aria-modal="true" aria-label="Корзина"><div class="drawer-head"><h2>Корзина</h2><button class="close" id="cartClose" aria-label="Закрыть">×</button></div><div class="cart-list" id="cartList"></div><div class="cart-total"><div class="total-line"><span>Итого</span><strong id="cartTotal">0 ₽</strong></div><button class="checkout-btn" id="checkoutOpen">Перейти к оформлению</button><p class="drawer-note">Заказ отправится продавцу в Telegram. Оплата и сроки подтверждаются в переписке.</p></div></aside></div>
+<div class="overlay" id="cartOverlay" aria-hidden="true"><aside class="drawer" role="dialog" aria-modal="true" aria-label="Корзина"><div class="drawer-head"><h2>Корзина</h2><button class="close" id="cartClose" aria-label="Закрыть">×</button></div><div class="cart-list" id="cartList"></div><div class="cart-total"><div class="total-line"><span>Итого</span><strong id="cartTotal">0 ₽</strong></div><button class="checkout-btn" id="checkoutOpen">Перейти к оформлению</button><p class="drawer-note">Заявка придёт в Telegram-бот магазина. После проверки продавец пришлёт реквизиты для оплаты.</p></div></aside></div>
 <div class="modal" id="productModal"><div class="modal-card"><button class="modal-close" data-close="productModal">×</button><div id="modalContent"></div></div></div>
-<div class="modal" id="checkoutModal"><div class="modal-card"><button class="modal-close" data-close="checkoutModal">×</button><div class="eyebrow">Оформление заказа</div><h2>Куда отправить детали?</h2><p>Заполни контакты — откроется Telegram с готовым сообщением продавцу.</p><div class="checkout-fields"><label>Как к тебе обращаться<input id="buyerName" placeholder="Имя"></label><label>Контакт для связи<input id="buyerContact" placeholder="@telegram или номер телефона"></label><label>Комментарий к заказу<textarea id="buyerComment" placeholder="Пожелания, сроки, дополнительные детали"></textarea></label></div><button class="checkout-btn" id="sendOrder">Отправить заказ в Telegram ↗</button></div></div>
+<div class="modal" id="checkoutModal"><div class="modal-card"><button class="modal-close" data-close="checkoutModal">×</button><div class="eyebrow">Оформление заказа</div><h2>Куда отправить детали?</h2><p>Заполни контакты — заявка на оплату сразу придёт в Telegram-бот магазина.</p><div class="checkout-fields"><label>Как к тебе обращаться<input id="buyerName" placeholder="Имя"></label><label>Контакт для связи<input id="buyerContact" placeholder="@telegram или номер телефона"></label><label>Комментарий к заказу<textarea id="buyerComment" placeholder="Пожелания, сроки, дополнительные детали"></textarea></label></div><button class="checkout-btn" id="sendOrder">Отправить заявку на оплату ↗</button></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 const SUPABASE_URL='https://krdhfzbinbxyketfcrdg.supabase.co';
@@ -98,14 +98,24 @@ function changeQty(id,delta){const item=cart.find(x=>x.id===Number(id));if(!item
 function openOverlay(id){$(id).classList.add('open');$(id).setAttribute('aria-hidden','false');document.body.style.overflow='hidden'}
 function closeOverlay(id){$(id).classList.remove('open');$(id).setAttribute('aria-hidden','true');if(!document.querySelector('.overlay.open,.modal.open'))document.body.style.overflow=''}
 function openProduct(id){const p=products.find(x=>x.id===Number(id));if(!p)return;const cat=categoryOf(p),sale=p.original_price&&Number(p.original_price)>Number(p.price);$('modalContent').innerHTML='<div class="eyebrow">'+esc(cat.icon||'✦')+' '+esc(cat.name)+'</div><h2>'+esc(p.name)+'</h2><p>'+esc(p.description||'Подробности уточняйте у продавца.')+'</p><div class="modal-price">'+money(p.price)+(sale?' <small style="font-size:13px;color:#9aa7b9;text-decoration:line-through">'+money(p.original_price)+'</small>':'')+'</div><div class="modal-actions"><button class="buy-btn" id="modalAdd">Добавить в корзину</button><button class="icon-btn" id="modalFav">'+(favorites.has(p.id)?'♥':'♡')+'</button></div>';$('modalAdd').onclick=()=>{addToCart(p.id);closeOverlay('productModal')};$('modalFav').onclick=()=>{toggleFavorite(p.id);$('modalFav').textContent=favorites.has(p.id)?'♥':'♡'};openOverlay('productModal')}
-function sendOrder(){
+async function sendOrder(){
  if(!cart.length){toast('Корзина пуста');return}
  const name=$('buyerName').value.trim(),contact=$('buyerContact').value.trim(),comment=$('buyerComment').value.trim();
  if(!name||!contact){toast('Укажи имя и контакт для связи');return}
- const lines=cart.map(x=>{const p=products.find(p=>p.id===x.id);return p?'• '+p.name+' × '+x.qty+' — '+money(Number(p.price)*x.qty):''}).filter(Boolean);
- const total=cart.reduce((s,x)=>{const p=products.find(p=>p.id===x.id);return s+(p?Number(p.price)*x.qty:0)},0);
- const message='Здравствуйте! Хочу оформить заказ в KARY STORE.\n\n'+lines.join('\n')+'\n\nИтого: '+money(total)+'\nИмя: '+name+'\nКонтакт: '+contact+(comment?'\nКомментарий: '+comment:'')+'\n\nПодскажите, пожалуйста, дальнейшие шаги.';
- window.open('https://t.me/'+SELLER+'?text='+encodeURIComponent(message),'_blank','noopener');
+ const button=$('sendOrder');button.disabled=true;button.textContent='Отправляем заявку…';
+ try{
+  const response=await fetch(SUPABASE_URL+'/functions/v1/kary-order-request',{
+   method:'POST',
+   headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY},
+   body:JSON.stringify({name,contact,comment,items:cart.map(x=>({id:x.id,qty:x.qty}))})
+  });
+  const result=await response.json().catch(()=>({}));
+  if(!response.ok||!result.ok)throw new Error(result.error||'Не удалось отправить заявку. Попробуй ещё раз.');
+  cart=[];saveStore();renderCart();closeOverlay('checkoutModal');
+  $('buyerName').value='';$('buyerContact').value='';$('buyerComment').value='';
+  toast('Заявка №'+result.order_number+' отправлена в наш Telegram-бот!');
+ }catch(error){toast(error.message||'Ошибка отправки заявки')}
+ finally{button.disabled=false;button.textContent='Отправить заявку на оплату ↗'}
 }
 $('categories').addEventListener('click',e=>{const b=e.target.closest('[data-category]');if(b)setCategory(b.dataset.category)});
 $('products').addEventListener('click',e=>{const fav=e.target.closest('[data-fav]'),add=e.target.closest('[data-add]'),open=e.target.closest('[data-open]');if(fav){e.stopPropagation();toggleFavorite(fav.dataset.fav)}else if(add){e.stopPropagation();addToCart(add.dataset.add)}else if(open)openProduct(open.dataset.open)});
