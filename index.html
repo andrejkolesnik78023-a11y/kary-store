@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#090b0a">
+<meta name="theme-color" content="#1769e8">
 <title>KARY STORE — цифровые товары и услуги</title>
 <meta name="description" content="KARY STORE — дизайн, цифровые услуги и аккаунты. Заказ напрямую у продавца.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,6 +46,30 @@ body{background:#111a14}
 .footer{border-top-color:rgba(255,255,255,.18)}
 
 .modal-backdrop{position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.72);display:grid;place-items:center;padding:18px;-webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px)}.product-modal{position:relative;width:min(100%,480px);padding:26px;border:1px solid rgba(199,255,74,.38);border-radius:22px;background:rgba(15,22,17,.97);box-shadow:0 24px 90px #000b}.modal-close{position:absolute;right:14px;top:10px;border:0;background:transparent;color:#fff;font-size:30px;line-height:1}.product-modal h2{font-size:23px;margin:14px 28px 10px 0}.product-modal p{color:#c0c9c1;font-size:14px;line-height:1.75;white-space:pre-wrap}.modal-price{display:block;width:100%;padding:11px 14px;border-radius:12px;background:#eee5ff;color:#32145f;text-align:center;font-size:23px;font-weight:800;margin:18px 0}.modal-buy{width:100%;padding:14px}.hidden{display:none!important}
+:root{--bg:#f5f8ff;--panel:#fff;--panel2:#edf3ff;--line:#dce7fb;--lime:#1769e8;--muted:#7183a2;--white:#102b55}
+body{background:#f5f8ff!important;color:#102b55!important;padding-bottom:88px}.background-video,.video-shade{display:none!important}
+.top{border-bottom:1px solid #e2eaf8}.brand,.hero h1,.section-head h2,.product h3,.hero-card strong{color:#102b55}
+.brandmark,.buy{background:#1769e8;color:#fff}.brand small,.hero p,.section-head p,.desc,.benefit p,.footer,.notice{color:#7183a2}
+.pill{background:#eaf2ff!important;border:1px solid #cfe0ff!important;color:#1769e8!important}.promo{background:#edf4ff!important;border:1px solid #d7e6ff!important;color:#1769e8!important}
+.hero h1 span{color:#1769e8}.hero-card,.product,.benefit,.admin,.search input,.field,.admin input,.admin textarea,.admin select,.filter,.empty,.loading,.secondary{background:#fff!important;border:1px solid #e0e9f8!important;box-shadow:0 8px 30px #173b7010!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.hero-card{background:linear-gradient(145deg,#eaf2ff,#fff 75%)!important;min-height:190px}.hero-card span{color:#1769e8;letter-spacing:1.4px;font-size:11px;font-weight:800}.hero-card strong{display:block;margin-top:18px;font-size:20px;line-height:1.55;overflow-wrap:anywhere}
+.filter{color:#587096}.filter.active{background:#1769e8!important;border-color:#1769e8!important;color:#fff!important}
+.search input,.field,.admin input,.admin textarea,.admin select{color:#102b55}.search input::placeholder{color:#8a9bb8}
+.product{border-radius:18px;overflow:hidden}.product:hover{border-color:#8bb7ff!important;box-shadow:0 16px 38px #1769e81b!important}
+.product-img{display:block!important;position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;background:#edf3ff!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+.product-img img{display:block;width:100%;height:100%;object-fit:cover}.photo-placeholder{height:100%;display:grid;place-items:center;color:#1769e8;font-weight:800;letter-spacing:2px;background:linear-gradient(145deg,#e7f0ff,#f8fbff)}
+.product-body{padding:13px}.product-bottom{align-items:center}.price,.modal-price{background:#eaf2ff!important;color:#1456bb!important}.product-more{color:#7183a2}
+.modal-backdrop{background:#0a1b35a8}.product-modal{background:#fff;border:1px solid #dce7fb}.product-modal h2{color:#102b55}.product-modal p{color:#5d7192}.modal-close{color:#1769e8}
+.secondary{color:#1769e8}.footer{border-top:1px solid #e2eaf8}.footer a{color:#1769e8}
+.shimmer{background:linear-gradient(90deg,#1769e8 0%,#70b6ff 30%,#164bb4 50%,#70b6ff 70%,#1769e8 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent!important;animation:blue-shimmer 3.4s linear infinite}
+@keyframes blue-shimmer{to{background-position:220% center}}.catalog-live{color:#1769e8!important;animation:catalog-pulse 2.4s ease-in-out infinite}
+@keyframes catalog-pulse{0%,100%{text-shadow:0 0 0 #1769e800}50%{text-shadow:0 0 16px #1769e84a}}
+.matrix{font-family:monospace;letter-spacing:1px;color:#1769e8!important;word-break:break-word}
+.bottom-nav{position:fixed;z-index:30;left:50%;bottom:max(12px,env(safe-area-inset-bottom));transform:translateX(-50%);width:min(540px,calc(100% - 24px));display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:7px;padding:8px;background:#fff;border:1px solid #dce7fb;border-radius:20px;box-shadow:0 12px 42px #173b7026}
+.nav-item{min-width:0;border:0;background:transparent;color:#7183a2;text-decoration:none;border-radius:13px;display:flex;align-items:center;justify-content:center;gap:6px;flex-direction:column;padding:7px 4px;font-size:10px;font-weight:800}
+.nav-icon{font-size:20px;line-height:1;color:#1769e8}.nav-order{background:#1769e8;color:#fff}.nav-order .nav-icon{color:#fff}.nav-disabled{opacity:.38;cursor:not-allowed}
+@media(max-width:760px){.hero{padding-top:35px}.hero-card{min-height:165px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.product-img{display:block!important}.product-body{padding:10px}.product h3{font-size:13px;line-height:1.4}.price{font-size:15px}.section-head h2{font-size:21px}}
+@media(prefers-reduced-motion:reduce){.shimmer,.catalog-live{animation:none}}
 </style>
 </head>
 <body>
@@ -54,14 +78,16 @@ body{background:#111a14}
 <div class="wrap">
 <header class="top"><div class="brand"><div class="brandmark">K</div><div>KARY STORE<small>DIGITAL GOODS & SERVICES</small></div></div><a class="pill" href="https://t.me/kar_y0" target="_blank" rel="noopener">Связаться с продавцом ↗</a></header>
 <div class="promo" role="region" aria-label="Акция магазина"><div class="promo-track" aria-hidden="true"><span>Скидка на первый заказ 10% на все товары</span><span>Скидка на первый заказ 10% на все товары</span><span>Скидка на первый заказ 10% на все товары</span><span>Скидка на первый заказ 10% на все товары</span></div></div>
-<section class="hero"><div><div class="eyebrow">Цифровой магазин нового формата</div><h1>ТВОИ ИДЕИ.<br><span>НАШИ РЕШЕНИЯ.</span></h1><p>Дизайн, цифровые услуги и другие полезные продукты. Выбирай товар, нажимай «Заказать» — и обсуждай детали напрямую с продавцом в Telegram.</p></div><div class="hero-card"><div><span>WELCOME TO KARY STORE</span><strong>Всё нужное —<br>в одном месте.</strong></div><div class="spark">✳</div></div></section>
-<section id="catalog"><div class="section-head"><div><h2>Каталог товаров</h2><p>Выбери категорию и найди то, что нужно</p></div><span class="pill" id="count">Загрузка…</span></div>
-<div class="tools"><div class="search"><input id="search" type="search" placeholder="⌕  Поиск по каталогу…"></div></div><div class="filters" id="filters"><button class="filter active" data-cat="all">Все товары</button><button class="filter" data-cat="design">🎨 Дизайн</button><button class="filter" data-cat="services">🛠️ Услуги</button><button class="filter" data-cat="accounts">🔐 Аккаунты</button></div>
+<section class="hero"><div><div class="eyebrow shimmer">ЦИФРОВОЙ МАГАЗИН НОВОГО ФОРМАТА</div><h1>НАША ЦЕЛЬ —<br><span>РАБОТАТЬ В ТИШИНЕ</span></h1><p>Digital products. Smart solutions. One place.</p></div><div class="hero-card"><div><span>WELCOME TO KARY STORE</span><strong class="matrix" id="matrixText">01001011 01000001 01010010 01011001</strong></div><div class="spark">K_</div></div></section>
+<section id="catalog"><div class="section-head"><div><h2 class="catalog-live">КАТАЛОГ ТОВАРОВ</h2><p>Выбери категорию и найди то, что нужно</p></div><span class="pill" id="count">Загрузка…</span></div>
+<div class="tools"><div class="search"><input id="search" type="search" placeholder="ПОИСК ПО КАТАЛОГУ"></div></div><div class="filters" id="filters"><button class="filter active" data-cat="all">Все товары</button><button class="filter" data-cat="design">🎨 Дизайн</button><button class="filter" data-cat="services">🛠️ Услуги</button><button class="filter" data-cat="accounts">🔐 Аккаунты</button></div>
 <div class="grid" id="products"><div class="loading">Загружаем каталог…</div></div></section>
 <section class="benefits"><div class="benefit"><i>⚡</i><b>Быстрый заказ</b><p>Один клик — и ты уже можешь обсудить заказ с продавцом.</p></div><div class="benefit"><i>🤝</i><b>Личное общение</b><p>Все детали, сроки и условия согласовываются напрямую.</p></div><div class="benefit"><i>✦</i><b>Удобный каталог</b><p>Актуальные позиции и понятные категории в одном месте.</p></div></section>
 <section class="admin hidden" id="admin"><h2>Панель управления</h2><div id="loginBox"><p class="notice">Вход для администратора магазина.</p><div class="admin-grid"><input id="email" type="email" placeholder="Email администратора"><input id="password" type="password" placeholder="Пароль"></div><div class="admin-actions"><button class="buy" id="login">Войти</button></div></div><div id="manageBox" class="hidden"><p class="notice">Добавление и удаление товаров. Изменения сохраняются в Supabase.</p><div class="admin-grid"><input id="pname" placeholder="Название товара"><select id="pcat"><option value="design">🎨 Дизайн</option><option value="services">🛠️ Услуги</option><option value="accounts">🔐 Аккаунты</option></select><input id="pprice" type="number" min="0" step="1" placeholder="Цена, ₽"><input id="pimage" type="url" placeholder="Ссылка на изображение (необязательно)"><textarea id="pdesc" placeholder="Описание товара"></textarea><input id="psort" type="number" value="0" placeholder="Порядок сортировки"></div><div class="admin-actions"><button class="buy" id="add">Добавить товар</button><button class="secondary" id="logout">Выйти</button></div><div id="adminProducts"></div></div><div class="status" id="adminStatus"></div></section>
 <div class="modal-backdrop hidden" id="productModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="product-modal"><button class="modal-close" id="modalClose" aria-label="Закрыть">×</button><span class="tag" id="modalCategory"></span><h2 id="modalTitle"></h2><p id="modalDescription"></p><div class="modal-price" id="modalPrice"></div><button class="buy modal-buy" id="modalOrder">Заказать ↗</button></div></div>
 <footer class="footer"><span>© 2026 KARY STORE. Все права защищены.</span><span>По вопросам заказа: <a href="https://t.me/kar_y0" target="_blank" rel="noopener">@kar_y0</a></span></footer>
+</div>
+<nav class="bottom-nav" aria-label="Основная навигация"><button id="navSearch" class="nav-item"><span class="nav-icon">⌕</span><span>Поиск</span></button><a class="nav-item nav-order" href="https://t.me/kar_y0" target="_blank" rel="noopener"><span class="nav-icon">↗</span><span>Быстрый заказ</span></a><button class="nav-item nav-disabled" type="button" disabled aria-disabled="true"><span class="nav-icon">○</span><span>Профиль</span></button></nav>
 </div>
 <script>
 const SUPABASE_URL='https://krdhfzbinbxyketfcrdg.supabase.co';
@@ -84,7 +110,7 @@ function render(){
  const q=el('search').value.trim().toLowerCase();
  const list=allProducts.filter(p=>(activeCategory==='all'||categorySlug(p)===activeCategory)&&(!q||(p.name+' '+(p.description||'')).toLowerCase().includes(q)));
  el('count').textContent=list.length+' товаров';
- el('products').innerHTML=list.length?list.map(p=>{const slug=categorySlug(p),cat=categoryMap[slug]||{name:'Каталог',icon:'✦'};return '<article class="product" role="button" tabindex="0" data-product="'+Number(p.id)+'"><div class="product-body"><span class="tag">'+cat.icon+' '+safe(cat.name)+'</span><h3>'+safe(p.name)+'</h3><div class="product-bottom"><span class="price">'+money(p.price)+'</span><span class="product-more">Подробнее ↗</span></div></div></article>';}).join(''):'<div class="empty">Пока здесь пусто. Попробуй другую категорию или загляни позже.</div>';
+ el('products').innerHTML=list.length?list.map(p=>{const slug=categorySlug(p),cat=categoryMap[slug]||{name:'Каталог',icon:'✦'};const photo=p.image_url?'<img src="'+safe(p.image_url)+'" alt="'+safe(p.name)+'" loading="lazy">':'<div class="photo-placeholder">KARY STORE</div>';return '<article class="product" role="button" tabindex="0" data-product="'+Number(p.id)+'"><div class="product-img">'+photo+'</div><div class="product-body"><span class="tag">'+safe(cat.name)+'</span><h3>'+safe(p.name)+'</h3><div class="product-bottom"><span class="price">'+money(p.price)+'</span><span class="product-more">Подробнее ↗</span></div></div></article>';}).join(''):'<div class="empty">Пока здесь пусто. Попробуй другую категорию или загляни позже.</div>';
  renderAdminProducts();
 }
 function openProduct(id){const p=allProducts.find(x=>String(x.id)===String(id));if(!p)return;const slug=categorySlug(p),cat=categoryMap[slug]||{name:'Каталог',icon:'✦'};el('modalCategory').textContent=cat.icon+' '+cat.name;el('modalTitle').textContent=p.name;el('modalDescription').textContent=p.description||'Подробности уточняйте у продавца.';el('modalPrice').textContent=money(p.price);el('modalOrder').onclick=()=>orderProduct(p.id);el('productModal').classList.remove('hidden');document.body.style.overflow='hidden';}
@@ -103,6 +129,10 @@ async function deleteProduct(id){if(!confirm('Удалить этот товар
 function renderAdminProducts(){const box=el('adminProducts');if(!box||el('manageBox').classList.contains('hidden'))return;box.innerHTML='<h3>Товары в каталоге</h3>'+allProducts.map(p=>'<div style="display:flex;justify-content:space-between;gap:12px;align-items:center;padding:10px 0;border-top:1px solid #ffffff18;font-size:12px"><span>'+safe(p.name)+' — <span class="price" style="display:inline-block;width:auto;padding:3px 7px;font-size:12px">'+money(p.price)+'</span></span><button class="secondary danger" onclick="deleteProduct('+Number(p.id)+')">Удалить</button></div>').join('');}
 window.deleteProduct=deleteProduct;
 
+el('navSearch').addEventListener('click',()=>{document.getElementById('catalog').scrollIntoView({behavior:'smooth'});setTimeout(()=>el('search').focus(),350);});
+const matrixPool='01アイウエオカキクケコサシスセソ<>[]{}#$%&*+-=';
+function updateMatrix(){const node=el('matrixText');if(!node)return;let s='';for(let i=0;i<34;i++)s+=matrixPool[Math.floor(Math.random()*matrixPool.length)];node.textContent=s;}
+updateMatrix();setInterval(updateMatrix,950);
 const params=new URLSearchParams(location.search);if(params.get('admin')==='1')el('admin').classList.remove('hidden');
 loadCatalog();
 </script>
