@@ -68,10 +68,31 @@ function saveStore(){localStorage.setItem('kary-favorites',JSON.stringify([...fa
 function toast(message){$('toast').textContent=message;$('toast').classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('toast').classList.remove('show'),2300)}
 function categoryOf(p){return categories.find(c=>c.id===p.category_id)||categories.find(c=>c.slug===p.category)||{name:'Услуги',slug:'services',icon:'✨'}}
 async function loadCatalog(){
- $('products').innerHTML='<div class="empty">Загружаем каталог…</div>';
- const [c,p]=await Promise.all([db.from('kary_categories').select('id,name,slug,icon,sort_order,is_active').eq('is_active',true).order('sort_order'),db.from('kary_products').select('id,category_id,name,description,price,original_price,image_url,is_active,sort_order,created_at').eq('is_active',true).order('sort_order').order('created_at',{ascending:false})]);
- if(c.error||p.error){$('products').innerHTML='<div class="empty">Не удалось загрузить каталог. Обнови страницу чуть позже или напиши продавцу в Telegram.</div>';$('productCount').textContent='Каталог недоступен';console.error(c.error||p.error);return}
- categories=c.data||[];products=p.data||[];renderCategories();renderProducts();renderCart();fillAdminCategories();
+ const productsBox=$('products');
+ productsBox.innerHTML='<div class="empty">Загружаем каталог…</div>';
+ $('productCount').textContent='Загрузка…';
+ try{
+  const [c,p]=await Promise.all([
+   db.from('kary_categories').select('id,name,slug,icon,sort_order,is_active').eq('is_active',true).order('sort_order'),
+   db.from('kary_products').select('id,category_id,name,description,price,original_price,image_url,is_active,sort_order,created_at').eq('is_active',true).order('sort_order').order('created_at',{ascending:false})
+  ]);
+  if(c.error)throw c.error;
+  if(p.error)throw p.error;
+  categories=Array.isArray(c.data)?c.data:[];
+  products=Array.isArray(p.data)?p.data:[];
+  renderCategories();
+  renderProducts();
+  renderCart();
+ }catch(error){
+  console.error('KARY catalog load failed:',error);
+  products=[];
+  categories=[];
+  $('categories').innerHTML='';
+  productsBox.innerHTML='<div class="empty">Не удалось загрузить товары. Проверь подключение и нажми «Обновить».</div><button class="buy-btn" id="retryCatalog" type="button">Обновить каталог</button>';
+  $('productCount').textContent='Каталог временно недоступен';
+  const retry=$('retryCatalog');
+  if(retry)retry.onclick=loadCatalog;
+ }
 }
 function renderCategories(){
  $('categories').innerHTML='<button class="cat '+(activeCategory==='all'?'active':'')+'" data-category="all">Все товары</button>'+categories.map(c=>'<button class="cat '+(activeCategory===c.slug?'active':'')+'" data-category="'+esc(c.slug)+'">'+esc(c.icon||'✦')+' '+esc(c.name)+'</button>').join('');
