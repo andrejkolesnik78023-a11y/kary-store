@@ -45,6 +45,7 @@ body{background:#111a14}
 .promo{background:rgba(199,255,74,.10)!important;color:rgba(214,255,145,.96)}
 .footer{border-top-color:rgba(255,255,255,.18)}
 
+.modal-backdrop{position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.72);display:grid;place-items:center;padding:18px;-webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px)}.product-modal{position:relative;width:min(100%,480px);padding:26px;border:1px solid rgba(199,255,74,.38);border-radius:22px;background:rgba(15,22,17,.97);box-shadow:0 24px 90px #000b}.modal-close{position:absolute;right:14px;top:10px;border:0;background:transparent;color:#fff;font-size:30px;line-height:1}.product-modal h2{font-size:23px;margin:14px 28px 10px 0}.product-modal p{color:#c0c9c1;font-size:14px;line-height:1.75;white-space:pre-wrap}.modal-price{font-size:25px;font-weight:800;margin:18px 0}.modal-buy{width:100%;padding:14px}.hidden{display:none!important}
 </style>
 </head>
 <body>
@@ -95,7 +96,7 @@ el('add').addEventListener('click',async()=>{const name=el('pname').value.trim()
 async function deleteProduct(id){if(!confirm('Удалить этот товар?'))return;const {error}=await db.from('kary_products').delete().eq('id',id);if(error){status('Ошибка удаления: '+error.message);return;}status('Товар удалён.');await loadCatalog();}
 function renderAdminProducts(){const box=el('adminProducts');if(!box||el('manageBox').classList.contains('hidden'))return;box.innerHTML='<h3>Товары в каталоге</h3>'+allProducts.map(p=>'<div style="display:flex;justify-content:space-between;gap:12px;align-items:center;padding:10px 0;border-top:1px solid #ffffff18;font-size:12px"><span>'+safe(p.name)+' — '+money(p.price)+'</span><button class="secondary danger" onclick="deleteProduct('+Number(p.id)+')">Удалить</button></div>').join('');}
 window.deleteProduct=deleteProduct;
-.modal-backdrop{position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.72);display:grid;place-items:center;padding:18px;-webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px)}.product-modal{position:relative;width:min(100%,480px);padding:26px;border:1px solid rgba(199,255,74,.38);border-radius:22px;background:rgba(15,22,17,.97);box-shadow:0 24px 90px #000b}.modal-close{position:absolute;right:14px;top:10px;border:0;background:transparent;color:#fff;font-size:30px;line-height:1}.product-modal h2{font-size:23px;margin:14px 28px 10px 0}.product-modal p{color:#c0c9c1;font-size:14px;line-height:1.75;white-space:pre-wrap}.modal-price{font-size:25px;font-weight:800;margin:18px 0}.modal-buy{width:100%;padding:14px}.hidden{display:none!important}\nconst params=new URLSearchParams(location.search);if(params.get('admin')==='1')el('admin').classList.remove('hidden');
+\nconst params=new URLSearchParams(location.search);if(params.get('admin')==='1')el('admin').classList.remove('hidden');
 loadCatalog();
 </script>
 </body>
