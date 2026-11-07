@@ -71,15 +71,28 @@ async function loadCatalog(){
  const productsBox=$('products');
  productsBox.innerHTML='<div class="empty">Загружаем каталог…</div>';
  $('productCount').textContent='Загрузка…';
+ const readRows=async(table,select,order)=>{
+  const url=new URL(SUPABASE_URL+'/rest/v1/'+table);
+  url.searchParams.set('select',select);
+  url.searchParams.set('is_active','eq.true');
+  if(order)url.searchParams.set('order',order);
+  const controller=new AbortController();
+  const timeout=setTimeout(()=>controller.abort(),10000);
+  try{
+   const response=await fetch(url.toString(),{method:'GET',headers:{apikey:SUPABASE_KEY,Accept:'application/json'},cache:'no-store',signal:controller.signal});
+   const body=await response.json().catch(()=>[]);
+   if(!response.ok)throw new Error(table+': '+(body.message||body.error||response.status));
+   if(!Array.isArray(body))throw new Error(table+': некорректный ответ сервера');
+   return body;
+  }finally{clearTimeout(timeout)}
+ };
  try{
-  const [c,p]=await Promise.all([
-   db.from('kary_categories').select('id,name,slug,icon,sort_order,is_active').eq('is_active',true).order('sort_order'),
-   db.from('kary_products').select('id,category_id,name,description,price,original_price,image_url,is_active,sort_order,created_at').eq('is_active',true).order('sort_order').order('created_at',{ascending:false})
+  const result=await Promise.all([
+   readRows('kary_categories','id,name,slug,icon,sort_order,is_active','sort_order.asc'),
+   readRows('kary_products','id,category_id,name,description,price,original_price,image_url,is_active,sort_order,created_at','sort_order.asc,created_at.desc')
   ]);
-  if(c.error)throw c.error;
-  if(p.error)throw p.error;
-  categories=Array.isArray(c.data)?c.data:[];
-  products=Array.isArray(p.data)?p.data:[];
+  categories=result[0];
+  products=result[1];
   renderCategories();
   renderProducts();
   renderCart();
@@ -87,8 +100,8 @@ async function loadCatalog(){
   console.error('KARY catalog load failed:',error);
   products=[];
   categories=[];
-  $('categories').innerHTML='';
-  productsBox.innerHTML='<div class="empty">Не удалось загрузить товары. Проверь подключение и нажми «Обновить».</div><button class="buy-btn" id="retryCatalog" type="button">Обновить каталог</button>';
+  $('categories').innerHTML='<button class="cat active" data-category="all">Все товары</button>';
+  productsBox.innerHTML='<div class="empty">Не удалось загрузить товары: '+esc(error.message||'ошибка соединения')+'</div><button class="buy-btn" id="retryCatalog" type="button">Повторить загрузку</button>';
   $('productCount').textContent='Каталог временно недоступен';
   const retry=$('retryCatalog');
   if(retry)retry.onclick=loadCatalog;
