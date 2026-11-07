@@ -186,8 +186,6 @@ async function sendOrder(){
 }
 $('topupFromCheckout').onclick=()=>{closeOverlay('checkoutModal');openProfile()};
 $('requestFromCheckout').onclick=()=>{document.querySelector('input[name="checkoutPayment"][value="request"]').checked=true;$('balanceError').hidden=true;sendOrder()};
-$('checkoutOpen').onclick=()=>{if(!customerSession){toast('Войди в профиль, чтобы оформить заказ');openProfile();return}$('balanceError').hidden=true;checkoutAttemptKey=null;openOverlay('checkoutModal')};
-
 $('categories').addEventListener('click',e=>{const b=e.target.closest('[data-category]');if(b)setCategory(b.dataset.category)});
 $('products').addEventListener('click',e=>{const fav=e.target.closest('[data-fav]'),add=e.target.closest('[data-add]'),open=e.target.closest('[data-open]');if(fav){e.stopPropagation();toggleFavorite(fav.dataset.fav)}else if(add){e.stopPropagation();addToCart(add.dataset.add)}else if(open)openProduct(open.dataset.open)});
 $('search').addEventListener('input',renderProducts);$('sort').addEventListener('change',renderProducts);
