@@ -84,6 +84,10 @@
  #profileContent:has(.profile-hero)>.profile-section{max-height:260px}
  .transfer-fields{grid-template-columns:1fr 1fr}
 }
+
+/* Кнопка закрытия профиля — ниже и удобнее для нажатия на телефоне */
+#profileModal .modal-card>.modal-close{top:48px;right:18px;width:42px;height:42px;z-index:5;display:grid;place-items:center;font-size:24px;touch-action:manipulation}
+@media(max-width:700px){#profileModal .modal-card>.modal-close{top:54px;right:14px;width:44px;height:44px}}
 </style>
 </head>
 <body>
