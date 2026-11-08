@@ -250,3 +250,21 @@ body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
  #products.product-grid>.product .product-media{height:128px}
  #products.product-grid>.product .product-info{min-height:170px;padding:9px}
 }
+
+
+/* Final catalog-only override: keep main products in a true two-column grid on phones. */
+#catalog #products.product-grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-auto-flow:row!important;
+  align-items:stretch!important;
+}
+#catalog #products.product-grid>.product{
+  grid-column:auto!important;
+  width:auto!important;
+  max-width:none!important;
+  min-width:0!important;
+}
+@media(min-width:900px){
+  #catalog #products.product-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
