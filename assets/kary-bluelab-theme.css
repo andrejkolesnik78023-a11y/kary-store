@@ -210,61 +210,32 @@ body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 #supportSend:disabled{opacity:.65;cursor:wait}
 
 
-/* Catalog layout: true two-column grid; cards fill each column. */
-#products.product-grid{
- display:grid!important;
- grid-template-columns:repeat(2,minmax(0,1fr))!important;
- gap:14px!important;
- align-items:stretch;
- width:100%!important;
-}
-#products.product-grid>.product{
- box-sizing:border-box!important;
- width:auto!important;
- min-width:0!important;
- max-width:none!important;
- height:auto;
- display:flex;
- flex-direction:column;
-}
-#products.product-grid>.empty{
- grid-column:1/-1!important;
- width:100%!important;
-}
-#products.product-grid>.product .product-media{
- flex:0 0 auto;
- width:100%;
-}
-#products.product-grid>.product .product-info{
- flex:1 1 auto;
- display:flex;
- flex-direction:column;
- min-width:0;
-}
-#products.product-grid>.product .product-foot{margin-top:auto}
-@media(min-width:900px){
- #products.product-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
-}
-@media(max-width:390px){
- #products.product-grid{gap:8px!important}
- #products.product-grid>.product .product-media{height:128px}
- #products.product-grid>.product .product-info{min-height:170px;padding:9px}
-}
-
-
-/* Final catalog-only override: keep main products in a true two-column grid on phones. */
-#catalog #products.product-grid{
+/* KARY catalog final placement override */
+html body main.container #catalog #products.product-grid{
   display:grid!important;
   grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-auto-columns:minmax(0,1fr)!important;
   grid-auto-flow:row!important;
   align-items:stretch!important;
-}
-#catalog #products.product-grid>.product{
-  grid-column:auto!important;
-  width:auto!important;
+  justify-content:stretch!important;
+  width:100%!important;
   max-width:none!important;
   min-width:0!important;
+  gap:10px!important;
+}
+html body main.container #catalog #products.product-grid > article.product{
+  display:flex!important;
+  grid-column:auto!important;
+  grid-row:auto!important;
+  order:0!important;
+  float:none!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:none!important;
+  margin:0!important;
 }
 @media(min-width:900px){
-  #catalog #products.product-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  html body main.container #catalog #products.product-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
 }
