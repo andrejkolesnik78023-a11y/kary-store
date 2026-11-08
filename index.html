@@ -247,18 +247,22 @@
 }
 
 
-/* KARY STORE — cinematic glass rain refresh effect */
-#kary-rain-overlay{position:fixed;inset:0;z-index:999999;pointer-events:none;overflow:hidden;opacity:1;animation:karyRainFade 2.65s ease forwards}
-#kary-rain-overlay::before{content:"";position:absolute;inset:-12%;background:radial-gradient(ellipse at 50% 38%,rgba(139,124,199,.13),transparent 58%);backdrop-filter:blur(1.5px);-webkit-backdrop-filter:blur(1.5px);animation:karyGlassClear 2.5s ease forwards}
-.kary-drop{position:absolute;top:var(--top);left:var(--left);width:var(--w);height:var(--h);border-radius:55% 45% 58% 42%;transform:translate3d(0,-35px,0) rotate(var(--rot));background:linear-gradient(145deg,rgba(255,255,255,.78) 0%,rgba(201,194,227,.28) 24%,rgba(90,59,140,.19) 58%,rgba(255,255,255,.08) 100%);border:1px solid rgba(255,255,255,.42);box-shadow:inset 2px 2px 4px rgba(255,255,255,.48),inset -2px -3px 5px rgba(14,11,29,.28),0 5px 16px rgba(5,3,16,.22),0 0 12px rgba(139,124,199,.22);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;animation:karyDropFall var(--dur) cubic-bezier(.18,.68,.3,1) var(--delay) forwards}
-.kary-drop::after{content:"";position:absolute;top:14%;left:22%;width:25%;height:35%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(255,255,255,0));filter:blur(.35px);transform:rotate(22deg)}
-.kary-streak{position:absolute;top:var(--top);left:var(--left);width:2px;height:var(--len);border-radius:99px;background:linear-gradient(180deg,transparent,rgba(201,194,227,.58),rgba(255,255,255,.75),transparent);filter:blur(.45px);opacity:0;animation:karyStreakFall var(--dur) ease-in var(--delay) forwards}
-@keyframes karyDropFall{0%{opacity:0;transform:translate3d(0,-45px,0) scale(.55) rotate(var(--rot))}12%{opacity:.95}55%{opacity:.9;transform:translate3d(var(--drift),48vh,0) scale(1.04) rotate(calc(var(--rot) + 8deg))}82%{opacity:.78}100%{opacity:0;transform:translate3d(calc(var(--drift) * 1.4),115vh,0) scale(.82) rotate(calc(var(--rot) + 18deg))}}
-@keyframes karyStreakFall{0%{opacity:0;transform:translateY(-8vh) scaleY(.2)}15%{opacity:.65}75%{opacity:.45}100%{opacity:0;transform:translateY(115vh) scaleY(1.5)}}
-@keyframes karyRainFade{0%,72%{opacity:1}100%{opacity:0;visibility:hidden}}
-@keyframes karyGlassClear{0%,65%{opacity:1}100%{opacity:0}}
+/* KARY STORE — blue starfall refresh effect */
+#kary-rain-overlay{position:fixed;inset:0;z-index:999999;pointer-events:none;overflow:hidden;opacity:1;animation:karyStarFade 2.7s ease forwards}
+#kary-rain-overlay::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 42%,rgba(38,133,255,.13),transparent 62%);animation:karyGlowFade 2.5s ease forwards}
+.kary-star{position:absolute;top:var(--top);left:var(--left);width:var(--size);height:var(--size);opacity:0;color:#69b7ff;filter:drop-shadow(0 0 5px rgba(42,145,255,.9)) drop-shadow(0 0 13px rgba(42,116,255,.65));animation:karyStarFall var(--dur) cubic-bezier(.2,.65,.25,1) var(--delay) forwards}
+.kary-star::before,.kary-star::after{content:"";position:absolute;left:50%;top:50%;display:block;background:linear-gradient(180deg,rgba(255,255,255,.98),#55aaff 48%,rgba(30,93,255,.1));border-radius:99px;transform:translate(-50%,-50%)}
+.kary-star::before{width:22%;height:100%}
+.kary-star::after{width:100%;height:22%;background:linear-gradient(90deg,rgba(255,255,255,.1),#75c4ff 48%,rgba(255,255,255,.95),#438dff 58%,rgba(255,255,255,.1))}
+.kary-star i{position:absolute;inset:25%;border-radius:50%;background:#fff;box-shadow:0 0 5px 2px #fff,0 0 14px 5px #4da6ff}
+.kary-star:nth-child(3n){transform:rotate(45deg)}
+.kary-star:nth-child(4n)::before,.kary-star:nth-child(4n)::after{border-radius:50%;filter:blur(.35px)}
+.kary-star-trail{position:absolute;top:var(--top);left:var(--left);width:1.5px;height:var(--len);border-radius:99px;background:linear-gradient(180deg,rgba(94,177,255,0),rgba(94,177,255,.8),rgba(255,255,255,.8),rgba(94,177,255,0));filter:drop-shadow(0 0 4px #368dff);opacity:0;animation:karyTrailFall var(--dur) ease-in var(--delay) forwards}
+@keyframes karyStarFall{0%{opacity:0;transform:translate3d(0,-8vh,0) rotate(0) scale(.35)}12%{opacity:1}65%{opacity:.95;transform:translate3d(var(--drift),68vh,0) rotate(180deg) scale(1.05)}100%{opacity:0;transform:translate3d(calc(var(--drift) * 1.35),112vh,0) rotate(360deg) scale(.55)}}
+@keyframes karyTrailFall{0%{opacity:0;transform:translateY(-12vh) scaleY(.2)}18%{opacity:.7}75%{opacity:.5}100%{opacity:0;transform:translateY(112vh) scaleY(1.4)}}
+@keyframes karyStarFade{0%,72%{opacity:1}100%{opacity:0;visibility:hidden}}
+@keyframes karyGlowFade{0%,65%{opacity:1}100%{opacity:0}}
 @media(prefers-reduced-motion:reduce){#kary-rain-overlay{display:none}}
-
 </style>
 <style>
 .publisher-page{display:none;min-height:100vh;padding:34px 16px 60px;background:radial-gradient(ellipse at 15% 0%,#6d39b833,transparent 35%),radial-gradient(ellipse at 100% 80%,#1769e833,transparent 35%),#080f20;color:#f3f6ff}
@@ -688,32 +692,31 @@ loadCatalog();
     var overlay=document.createElement('div');
     overlay.id='kary-rain-overlay';
     overlay.setAttribute('aria-hidden','true');
-    var count=Math.min(34,Math.max(20,Math.floor(window.innerWidth/18)));
+    var count=Math.min(38,Math.max(24,Math.floor(window.innerWidth/16)));
     for(var i=0;i<count;i++){
-      var drop=document.createElement('i');
-      drop.className='kary-drop';
-      drop.style.setProperty('--left',(Math.random()*100).toFixed(2)+'%');
-      drop.style.setProperty('--top',(-8-Math.random()*35).toFixed(1)+'vh');
-      drop.style.setProperty('--w',(9+Math.random()*23).toFixed(1)+'px');
-      drop.style.setProperty('--h',(14+Math.random()*32).toFixed(1)+'px');
-      drop.style.setProperty('--rot',(-25+Math.random()*50).toFixed(1)+'deg');
-      drop.style.setProperty('--drift',(-22+Math.random()*44).toFixed(1)+'px');
-      drop.style.setProperty('--dur',(1.75+Math.random()*.9).toFixed(2)+'s');
-      drop.style.setProperty('--delay',(Math.random()*.32).toFixed(2)+'s');
-      overlay.appendChild(drop);
+      var star=document.createElement('span');
+      star.className='kary-star';
+      star.innerHTML='<i></i>';
+      star.style.setProperty('--left',(Math.random()*100).toFixed(2)+'%');
+      star.style.setProperty('--top',(-12-Math.random()*28).toFixed(1)+'vh');
+      star.style.setProperty('--size',(9+Math.random()*17).toFixed(1)+'px');
+      star.style.setProperty('--drift',(-28+Math.random()*56).toFixed(1)+'px');
+      star.style.setProperty('--dur',(1.9+Math.random()*.85).toFixed(2)+'s');
+      star.style.setProperty('--delay',(Math.random()*.35).toFixed(2)+'s');
+      overlay.appendChild(star);
     }
-    for(var j=0;j<12;j++){
-      var streak=document.createElement('i');
-      streak.className='kary-streak';
-      streak.style.setProperty('--left',(Math.random()*100).toFixed(2)+'%');
-      streak.style.setProperty('--top',(-15-Math.random()*25).toFixed(1)+'vh');
-      streak.style.setProperty('--len',(35+Math.random()*90).toFixed(0)+'px');
-      streak.style.setProperty('--dur',(1.8+Math.random()*.65).toFixed(2)+'s');
-      streak.style.setProperty('--delay',(Math.random()*.28).toFixed(2)+'s');
-      overlay.appendChild(streak);
+    for(var j=0;j<10;j++){
+      var trail=document.createElement('span');
+      trail.className='kary-star-trail';
+      trail.style.setProperty('--left',(Math.random()*100).toFixed(2)+'%');
+      trail.style.setProperty('--top',(-18-Math.random()*22).toFixed(1)+'vh');
+      trail.style.setProperty('--len',(35+Math.random()*85).toFixed(0)+'px');
+      trail.style.setProperty('--dur',(1.9+Math.random()*.7).toFixed(2)+'s');
+      trail.style.setProperty('--delay',(Math.random()*.3).toFixed(2)+'s');
+      overlay.appendChild(trail);
     }
     document.body.appendChild(overlay);
-    window.setTimeout(function(){if(overlay.parentNode)overlay.parentNode.removeChild(overlay)},2900);
+    window.setTimeout(function(){if(overlay.parentNode)overlay.parentNode.removeChild(overlay)},2950);
   } catch(e) {}
 })();
 </script>
