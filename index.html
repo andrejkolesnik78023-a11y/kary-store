@@ -283,7 +283,40 @@ body.publisher-mode main,body.publisher-mode .bottom-nav,body.publisher-mode #ca
 .publisher-login{border:1px solid #ffffff25;background:#ffffff0a;color:#fff;border-radius:11px;padding:12px 16px;font-weight:800;font-size:12px}
 @media(max-width:520px){.publisher-page{padding:20px 12px 40px}.publisher-card{border-radius:17px}.publisher-text{min-height:190px}}
 </style>
- <link rel="stylesheet" href="./assets/kary-bluelab-theme.css?v=6">
+ <link rel="stylesheet" href="./assets/kary-bluelab-theme.css?v=7">
+
+<style id="kary-main-catalog-layout-fix">
+/* Keep the main catalog cards side by side on phones. History grid is untouched. */
+#catalog #products.product-grid{
+  display:flex!important;
+  flex-flow:row wrap!important;
+  align-items:stretch!important;
+  justify-content:flex-start!important;
+  gap:10px!important;
+  width:100%!important;
+}
+#catalog #products.product-grid>.product{
+  box-sizing:border-box!important;
+  flex:0 0 calc(50% - 5px)!important;
+  width:calc(50% - 5px)!important;
+  min-width:0!important;
+  max-width:calc(50% - 5px)!important;
+  grid-column:auto!important;
+}
+#catalog #products.product-grid>.empty{
+  flex:0 0 100%!important;
+  width:100%!important;
+  max-width:100%!important;
+}
+@media(min-width:900px){
+  #catalog #products.product-grid>.product{
+    flex-basis:calc(33.333% - 7px)!important;
+    width:calc(33.333% - 7px)!important;
+    max-width:calc(33.333% - 7px)!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <header class="topbar"><div class="container top-inner">
