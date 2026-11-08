@@ -1,0 +1,54 @@
+name: KARY isolated browser checks
+
+on:
+  push:
+    branches:
+      - replica/kary-bluelab-redesign
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  browser-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout isolated redesign
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+
+      - name: Start local static preview
+        run: |
+          mkdir -p artifacts
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/kary-preview.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:4173/ > /dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/kary-preview.log
+          exit 1
+
+      - name: Run browser regression checks
+        run: node tests/kary-browser-check.cjs
+
+      - name: Upload mobile and desktop screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kary-browser-preview
+          path: artifacts/
+          if-no-files-found: ignore
+          retention-days: 7
