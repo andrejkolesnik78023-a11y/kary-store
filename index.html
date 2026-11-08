@@ -246,6 +246,19 @@
  #profileModal .modal-card>h2{color:#C9C2E3!important}
 }
 
+
+/* KARY STORE — cinematic glass rain refresh effect */
+#kary-rain-overlay{position:fixed;inset:0;z-index:999999;pointer-events:none;overflow:hidden;opacity:1;animation:karyRainFade 2.65s ease forwards}
+#kary-rain-overlay::before{content:"";position:absolute;inset:-12%;background:radial-gradient(ellipse at 50% 38%,rgba(139,124,199,.13),transparent 58%);backdrop-filter:blur(1.5px);-webkit-backdrop-filter:blur(1.5px);animation:karyGlassClear 2.5s ease forwards}
+.kary-drop{position:absolute;top:var(--top);left:var(--left);width:var(--w);height:var(--h);border-radius:55% 45% 58% 42%;transform:translate3d(0,-35px,0) rotate(var(--rot));background:linear-gradient(145deg,rgba(255,255,255,.78) 0%,rgba(201,194,227,.28) 24%,rgba(90,59,140,.19) 58%,rgba(255,255,255,.08) 100%);border:1px solid rgba(255,255,255,.42);box-shadow:inset 2px 2px 4px rgba(255,255,255,.48),inset -2px -3px 5px rgba(14,11,29,.28),0 5px 16px rgba(5,3,16,.22),0 0 12px rgba(139,124,199,.22);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;animation:karyDropFall var(--dur) cubic-bezier(.18,.68,.3,1) var(--delay) forwards}
+.kary-drop::after{content:"";position:absolute;top:14%;left:22%;width:25%;height:35%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(255,255,255,0));filter:blur(.35px);transform:rotate(22deg)}
+.kary-streak{position:absolute;top:var(--top);left:var(--left);width:2px;height:var(--len);border-radius:99px;background:linear-gradient(180deg,transparent,rgba(201,194,227,.58),rgba(255,255,255,.75),transparent);filter:blur(.45px);opacity:0;animation:karyStreakFall var(--dur) ease-in var(--delay) forwards}
+@keyframes karyDropFall{0%{opacity:0;transform:translate3d(0,-45px,0) scale(.55) rotate(var(--rot))}12%{opacity:.95}55%{opacity:.9;transform:translate3d(var(--drift),48vh,0) scale(1.04) rotate(calc(var(--rot) + 8deg))}82%{opacity:.78}100%{opacity:0;transform:translate3d(calc(var(--drift) * 1.4),115vh,0) scale(.82) rotate(calc(var(--rot) + 18deg))}}
+@keyframes karyStreakFall{0%{opacity:0;transform:translateY(-8vh) scaleY(.2)}15%{opacity:.65}75%{opacity:.45}100%{opacity:0;transform:translateY(115vh) scaleY(1.5)}}
+@keyframes karyRainFade{0%,72%{opacity:1}100%{opacity:0;visibility:hidden}}
+@keyframes karyGlassClear{0%,65%{opacity:1}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){#kary-rain-overlay{display:none}}
+
 </style>
 <style>
 .publisher-page{display:none;min-height:100vh;padding:34px 16px 60px;background:radial-gradient(ellipse at 15% 0%,#6d39b833,transparent 35%),radial-gradient(ellipse at 100% 80%,#1769e833,transparent 35%),#080f20;color:#f3f6ff}
@@ -666,6 +679,43 @@ async function initializePublisher(){
 
 if(PUBLISHER_MODE)initializePublisher();
 loadCatalog();
+</script>
+
+<script>
+(function(){
+  try {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var overlay=document.createElement('div');
+    overlay.id='kary-rain-overlay';
+    overlay.setAttribute('aria-hidden','true');
+    var count=Math.min(34,Math.max(20,Math.floor(window.innerWidth/18)));
+    for(var i=0;i<count;i++){
+      var drop=document.createElement('i');
+      drop.className='kary-drop';
+      drop.style.setProperty('--left',(Math.random()*100).toFixed(2)+'%');
+      drop.style.setProperty('--top',(-8-Math.random()*35).toFixed(1)+'vh');
+      drop.style.setProperty('--w',(9+Math.random()*23).toFixed(1)+'px');
+      drop.style.setProperty('--h',(14+Math.random()*32).toFixed(1)+'px');
+      drop.style.setProperty('--rot',(-25+Math.random()*50).toFixed(1)+'deg');
+      drop.style.setProperty('--drift',(-22+Math.random()*44).toFixed(1)+'px');
+      drop.style.setProperty('--dur',(1.75+Math.random()*.9).toFixed(2)+'s');
+      drop.style.setProperty('--delay',(Math.random()*.32).toFixed(2)+'s');
+      overlay.appendChild(drop);
+    }
+    for(var j=0;j<12;j++){
+      var streak=document.createElement('i');
+      streak.className='kary-streak';
+      streak.style.setProperty('--left',(Math.random()*100).toFixed(2)+'%');
+      streak.style.setProperty('--top',(-15-Math.random()*25).toFixed(1)+'vh');
+      streak.style.setProperty('--len',(35+Math.random()*90).toFixed(0)+'px');
+      streak.style.setProperty('--dur',(1.8+Math.random()*.65).toFixed(2)+'s');
+      streak.style.setProperty('--delay',(Math.random()*.28).toFixed(2)+'s');
+      overlay.appendChild(streak);
+    }
+    document.body.appendChild(overlay);
+    window.setTimeout(function(){if(overlay.parentNode)overlay.parentNode.removeChild(overlay)},2900);
+  } catch(e) {}
+})();
 </script>
 </body>
 </html>
