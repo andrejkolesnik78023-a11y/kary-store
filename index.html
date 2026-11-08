@@ -190,6 +190,12 @@ body.publisher-mode main,body.publisher-mode .bottom-nav,body.publisher-mode #ca
 .publisher-label{display:block;font-size:11px;font-weight:800;color:#c4cde1;margin:0 0 8px}
 .publisher-text{width:100%;min-height:220px;resize:vertical;border:1px solid #ffffff25;border-radius:14px;background:#090f20;color:#fff;padding:15px;font:13px/1.7 Manrope,system-ui,sans-serif;outline:none}
 .publisher-text:focus{border-color:#9671ff;box-shadow:0 0 0 3px #9671ff20}
+.publisher-photo{display:grid;gap:10px;margin:16px 0}
+.publisher-photo input{width:100%;padding:12px;border:1px dashed #ffffff35;border-radius:12px;background:#ffffff08;color:#c4cde1;font-size:11px}
+.publisher-photo-preview{display:flex;align-items:center;gap:12px}
+.publisher-photo-preview img{width:88px;height:88px;object-fit:cover;border-radius:12px;border:1px solid #ffffff25}
+.publisher-photo-preview button{border:1px solid #ffffff25;background:#ffffff0a;color:#fff;border-radius:9px;padding:9px 12px;font-size:11px}
+.publisher-photo-note{font-size:10px;color:#8492ad;line-height:1.5}
 .publisher-tools{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:10px 0 18px;flex-wrap:wrap}
 .publisher-counter{font-size:10px;color:#8492ad}
 .publisher-preview-toggle{display:flex;gap:8px;align-items:center;font-size:10px;color:#aebbd3}
@@ -252,8 +258,14 @@ body.publisher-mode main,body.publisher-mode .bottom-nav,body.publisher-mode #ca
     <button class="publisher-login" id="publisherLogin" type="button">Войти в профиль KARY STORE</button>
    </div>
    <div id="publisherEditor" hidden>
-    <label class="publisher-label" for="publisherText">Текст публикации</label>
+    <label class="publisher-label" for="publisherText">Текст публикации или подпись к фото</label>
     <textarea class="publisher-text" id="publisherText" maxlength="4096" placeholder="Напиши новость или объявление для канала…"></textarea>
+    <div class="publisher-photo">
+     <label class="publisher-label" for="publisherPhoto">Фотография к публикации</label>
+     <input id="publisherPhoto" type="file" accept="image/jpeg,image/png,image/webp">
+     <div class="publisher-photo-preview" id="publisherPhotoPreview" hidden><img id="publisherPhotoImage" alt="Предпросмотр фотографии"><button id="publisherPhotoRemove" type="button">Удалить фото</button></div>
+     <div class="publisher-photo-note">JPG, PNG или WEBP. До 6 МБ. С фотографией подпись — до 1024 символов.</div>
+    </div>
     <div class="publisher-tools">
      <span class="publisher-counter" id="publisherCounter">0 / 4096</span>
      <label class="publisher-preview-toggle"><input type="checkbox" id="publisherNoPreview"> Отключить предпросмотр ссылок</label>
@@ -526,15 +538,41 @@ async function initializePublisher(){
   gate.innerHTML='<p class="publisher-lead">Доступ подтверждён. Можно подготовить публикацию.</p>';
   editor.hidden=false;
   const area=$('publisherText'),counter=$('publisherCounter'),button=$('publisherPublish');
-  const update=()=>{counter.textContent=area.value.length+' / 4096';button.disabled=!area.value.trim()||area.value.length>4096};
+  const photoInput=$('publisherPhoto'),photoPreview=$('publisherPhotoPreview'),photoImage=$('publisherPhotoImage');
+  let photoBase64='',photoMime='';
+  const clearPhoto=()=>{photoBase64='';photoMime='';photoInput.value='';photoPreview.hidden=true;photoImage.removeAttribute('src');update()};
+  const update=()=>{
+   const limit=photoBase64?1024:4096;
+   counter.textContent=area.value.length+' / '+limit+(photoBase64?' · фото':'');
+   button.disabled=(!area.value.trim()&&!photoBase64)||area.value.length>limit;
+  };
   area.addEventListener('input',update);
+  photoInput.addEventListener('change',()=>{
+   const file=photoInput.files&&photoInput.files[0];
+   if(!file){clearPhoto();return}
+   if(!['image/jpeg','image/png','image/webp'].includes(file.type)){publisherStatus('Выбери фотографию в формате JPG, PNG или WEBP.','error');clearPhoto();return}
+   if(file.size>6*1024*1024){publisherStatus('Файл больше 6 МБ. Выбери фотографию поменьше.','error');clearPhoto();return}
+   const reader=new FileReader();
+   reader.onload=()=>{
+    const dataUrl=String(reader.result||'');
+    photoBase64=dataUrl.split(',')[1]||'';photoMime=file.type;
+    photoImage.src=dataUrl;photoPreview.hidden=false;update();
+    publisherStatus('Фото добавлено. Можно публиковать.','success');
+   };
+   reader.onerror=()=>{publisherStatus('Не удалось прочитать фотографию. Попробуй другой файл.','error');clearPhoto()};
+   reader.readAsDataURL(file);
+  });
+  $('publisherPhotoRemove').onclick=clearPhoto;
   button.onclick=async()=>{
-   const message=area.value.trim();if(!message)return;
-   if(!confirm('Опубликовать этот текст в Telegram-канале @karystoreru?'))return;
+   const message=area.value.trim();
+   if(!message&&!photoBase64)return;
+   const limit=photoBase64?1024:4096;
+   if(message.length>limit){publisherStatus(photoBase64?'Подпись к фото должна быть не длиннее 1024 символов.':'Сообщение должно быть не длиннее 4096 символов.','error');return}
+   if(!confirm(photoBase64?'Опубликовать фотографию с подписью в Telegram-канале @karystoreru?':'Опубликовать этот текст в Telegram-канале @karystoreru?'))return;
    button.disabled=true;button.textContent='Отправляем…';publisherStatus('Отправляем публикацию в канал…');
    try{
-    const result=await publisherRequest({action:'publish',token:customerSession,text:message,disable_web_page_preview:$('publisherNoPreview').checked});
-    area.value='';update();publisherStatus('Опубликовано в @karystoreru. ID сообщения: '+result.message_id,'success');
+    const result=await publisherRequest({action:'publish',token:customerSession,text:message,photo_base64:photoBase64||undefined,photo_mime:photoMime||undefined,disable_web_page_preview:$('publisherNoPreview').checked});
+    area.value='';clearPhoto();update();publisherStatus('Опубликовано в @karystoreru. ID сообщения: '+result.message_id,'success');
    }catch(error){publisherStatus(error.message||'Не удалось опубликовать пост','error')}
    finally{button.textContent='Опубликовать в Telegram ↗';update()}
   };
