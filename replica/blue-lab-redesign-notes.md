@@ -36,5 +36,5 @@ Visual redesign for KARY STORE based on the public BlueLab reference. This is an
 - Added a three-step purchase explainer and FAQ section.
 - Kept all new behavior client-side; no new Supabase calls, schema changes, Edge Function changes, or payment changes.
 - Re-ran JavaScript syntax checks for the inline app and enhancement scripts, plus CSS brace-balance checks: PASS.
-- GitHub compare confirms the work remains isolated on this branch, 7 commits ahead of `main`; `main` remains unchanged.
+- GitHub compare confirms the work remains isolated on this branch, 8 commits ahead of `main`; `main` remains unchanged.
 - Browser rendering and live purchase/auth regression testing are still pending; no deployment performed.
