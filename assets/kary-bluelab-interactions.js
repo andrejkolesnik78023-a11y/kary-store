@@ -8,7 +8,7 @@
   actions.innerHTML='<a class="hero-primary" href="#catalog">Открыть каталог <span>↗</span></a><button class="hero-secondary" id="heroSupport" type="button">Задать вопрос</button>';
   copy.appendChild(actions);
   const proof=document.createElement('div');proof.className='hero-proof';
-  proof.innerHTML='<span><i></i> Каталог онлайн</span><span>✦ Цифровые решения</span><span>↗ Поддержка рядом</span>';
+  proof.innerHTML='<span>✦ Цифровые решения</span><span>↗ Поддержка рядом</span>';
   copy.appendChild(proof);
   const support=$('heroSupport');if(support)support.addEventListener('click',()=>{const button=$('navSupport');if(button)button.click()});
  };
