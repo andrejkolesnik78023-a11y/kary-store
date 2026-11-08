@@ -173,6 +173,35 @@
 .showreel-video{display:block;width:100%;max-height:460px;aspect-ratio:16/9;object-fit:contain;background:#07152e}
 @media(max-width:640px){.showreel-section{padding:12px 0 22px}.showreel-heading{align-items:center}.showreel-heading h2{font-size:20px}.showreel-frame{border-radius:16px}.showreel-video{aspect-ratio:16/9;max-height:300px}}
 </style>
+<style>
+.publisher-page{display:none;min-height:100vh;padding:34px 16px 60px;background:radial-gradient(ellipse at 15% 0%,#6d39b833,transparent 35%),radial-gradient(ellipse at 100% 80%,#1769e833,transparent 35%),#080f20;color:#f3f6ff}
+body.publisher-mode .publisher-page{display:block}
+body.publisher-mode main,body.publisher-mode .bottom-nav,body.publisher-mode #cartOverlay,body.publisher-mode #productModal,body.publisher-mode #checkoutModal,body.publisher-mode #supportModal{display:none!important}
+.publisher-shell{width:min(760px,100%);margin:0 auto}
+.publisher-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px}
+.publisher-brand{font-size:12px;font-weight:900;letter-spacing:2px;color:#a9baff}
+.publisher-back{border:1px solid #ffffff25;border-radius:10px;padding:9px 12px;color:#dce5ff;background:#ffffff0a;font-size:11px;font-weight:800}
+.publisher-card{border:1px solid #ffffff20;border-radius:22px;padding:clamp(18px,4vw,30px);background:linear-gradient(145deg,#111d39ed,#12152ff0);box-shadow:0 24px 70px #0007,0 0 35px #7047ff16}
+.publisher-eyebrow{font-size:10px;font-weight:900;letter-spacing:2px;color:#a98aff}
+.publisher-card h1{font-size:clamp(25px,5vw,36px);letter-spacing:-1px;margin:9px 0}
+.publisher-lead{color:#aebbd3;font-size:12px;line-height:1.7;margin:0 0 22px}
+.publisher-channel{display:flex;align-items:center;gap:9px;border:1px solid #ffffff17;background:#ffffff08;border-radius:12px;padding:12px;margin-bottom:18px;font-size:12px;color:#e8edff}
+.publisher-channel strong{color:#fff}
+.publisher-label{display:block;font-size:11px;font-weight:800;color:#c4cde1;margin:0 0 8px}
+.publisher-text{width:100%;min-height:220px;resize:vertical;border:1px solid #ffffff25;border-radius:14px;background:#090f20;color:#fff;padding:15px;font:13px/1.7 Manrope,system-ui,sans-serif;outline:none}
+.publisher-text:focus{border-color:#9671ff;box-shadow:0 0 0 3px #9671ff20}
+.publisher-tools{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:10px 0 18px;flex-wrap:wrap}
+.publisher-counter{font-size:10px;color:#8492ad}
+.publisher-preview-toggle{display:flex;gap:8px;align-items:center;font-size:10px;color:#aebbd3}
+.publisher-preview-toggle input{accent-color:#9068ff}
+.publisher-publish{width:100%;border:0;border-radius:13px;padding:15px;background:linear-gradient(100deg,#7550ec,#3279ed);color:white;font-weight:900;font-size:13px;box-shadow:0 10px 28px #563bdc45}
+.publisher-publish:disabled{opacity:.45;box-shadow:none;cursor:not-allowed}
+.publisher-status{margin-top:15px;border-radius:12px;padding:12px;background:#ffffff0a;border:1px solid #ffffff15;color:#b9c6df;font-size:11px;line-height:1.6;white-space:pre-wrap}
+.publisher-status.error{color:#ffb5c0;border-color:#ff657733;background:#ff657710}
+.publisher-status.success{color:#a9f3ce;border-color:#35d18a33;background:#35d18a10}
+.publisher-login{border:1px solid #ffffff25;background:#ffffff0a;color:#fff;border-radius:11px;padding:12px 16px;font-weight:800;font-size:12px}
+@media(max-width:520px){.publisher-page{padding:20px 12px 40px}.publisher-card{border-radius:17px}.publisher-text{min-height:190px}}
+</style>
 </head>
 <body>
 <header class="topbar"><div class="container top-inner">
@@ -210,6 +239,31 @@
 
 <footer class="footer" style="flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px"><span>© 2026 KARY STORE. Все права защищены.</span><a class="footer-credit" href="https://t.me/kar_y0" target="_blank" rel="noopener noreferrer" style="color:#8fcaff;font-weight:800;font-size:11px;transition:color .2s">Задизайнено Андреем Колесниковым ↗</a></footer>
 </main>
+<section class="publisher-page" id="publisherPage">
+ <div class="publisher-shell">
+  <div class="publisher-top"><div class="publisher-brand">KARY STORE / PRIVATE TOOL</div><a class="publisher-back" href="/">← На сайт</a></div>
+  <div class="publisher-card">
+   <div class="publisher-eyebrow">TELEGRAM CHANNEL CONTROL</div>
+   <h1>Публикация поста</h1>
+   <p class="publisher-lead">Закрытый редактор для владельца магазина. Публикация отправляется в канал только после твоего подтверждения.</p>
+   <div class="publisher-channel"><span>✈️</span><span>Канал: <strong>@karystoreru</strong></span></div>
+   <div id="publisherGate">
+    <p class="publisher-lead">Проверяем доступ к закрытому редактору…</p>
+    <button class="publisher-login" id="publisherLogin" type="button">Войти в профиль KARY STORE</button>
+   </div>
+   <div id="publisherEditor" hidden>
+    <label class="publisher-label" for="publisherText">Текст публикации</label>
+    <textarea class="publisher-text" id="publisherText" maxlength="4096" placeholder="Напиши новость или объявление для канала…"></textarea>
+    <div class="publisher-tools">
+     <span class="publisher-counter" id="publisherCounter">0 / 4096</span>
+     <label class="publisher-preview-toggle"><input type="checkbox" id="publisherNoPreview"> Отключить предпросмотр ссылок</label>
+    </div>
+    <button class="publisher-publish" id="publisherPublish" type="button" disabled>Опубликовать в Telegram ↗</button>
+   </div>
+   <div class="publisher-status" id="publisherStatus" role="status" aria-live="polite">Доступ к редактору проверяется на сервере.</div>
+  </div>
+ </div>
+</section>
 <nav class="bottom-nav" aria-label="Основная навигация"><button class="nav-item" id="navCatalog"><span class="ico">⌂</span>Каталог</button><button class="nav-item" id="navCart"><span class="ico">🛒</span>Корзина</button><button class="nav-item" id="navSupport"><span class="ico nav-support-ico">✉</span>Поддержка<span class="unread-dot" id="supportUnreadDot" hidden></span></button><button class="nav-item" id="navProfile"><span class="ico">♙</span>Профиль</button></nav>
 <div class="overlay" id="cartOverlay" aria-hidden="true"><aside class="drawer" role="dialog" aria-modal="true" aria-label="Корзина"><div class="drawer-head"><h2>Корзина</h2><button class="close" id="cartClose" aria-label="Закрыть">×</button></div><div class="cart-list" id="cartList"></div><div class="cart-total"><div class="total-line"><span>Итого</span><strong id="cartTotal">0 ₽</strong></div><button class="checkout-btn" id="checkoutOpen">Перейти к оформлению</button><p class="drawer-note">Заявка придёт в Telegram-бот магазина. После проверки продавец пришлёт реквизиты для оплаты.</p></div></aside></div>
 <div class="modal" id="productModal"><div class="modal-card"><button class="modal-close" data-close="productModal">×</button><div id="modalContent"></div></div></div>
@@ -389,7 +443,7 @@ function profileForm(){
  const refCode=(new URLSearchParams(location.search).get('ref')||'').toUpperCase();
  $('profileContent').innerHTML='<div class="profile-switch"><button id="profileRegisterTab" class="'+(profileMode==='register'?'active':'')+'">Регистрация</button><button id="profileLoginTab" class="'+(profileMode==='login'?'active':'')+'">Вход</button></div><form class="profile-form" id="profileForm"><label>Страна и номер телефона<div class="profile-phone"><select id="profilePrefix">'+countries+'</select><input id="profilePhone" type="tel" inputmode="numeric" placeholder="900 000 00 00" required></div></label>'+(profileMode==='register'?'<label>Как вас зовут?<input id="profileFullName" maxlength="60" placeholder="Ваше имя"></label><label>Telegram-ник<input id="profileTelegram" placeholder="@username" maxlength="33" required></label><label>Реферальный код (если есть)<input id="profileReferral" maxlength="20" value="'+esc(refCode)+'" placeholder="Например, A1B2C3D4"></label>':'')+'<label>Пароль<input id="profilePassword" type="password" minlength="8" maxlength="128" placeholder="Не менее 8 символов" required></label><button type="submit">'+(profileMode==='register'?'Создать профиль':'Войти')+'</button><p class="profile-note">Без SMS. Пароль хранится в защищённом виде. Номер телефона не подтверждается SMS.</p><div id="profileError" class="profile-note" role="status"></div></form>';
  $('profileRegisterTab').onclick=()=>{profileMode='register';profileForm()};$('profileLoginTab').onclick=()=>{profileMode='login';profileForm()};
- $('profileForm').onsubmit=async e=>{e.preventDefault();const btn=$('profileForm').querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Подождите…';const phone=$('profilePrefix').value+$('profilePhone').value.replace(/\D/g,'');const password=$('profilePassword').value;try{const payload=profileMode==='register'?{action:'register',phone,telegram_username:$('profileTelegram').value,password,full_name:$('profileFullName').value,referral_code:$('profileReferral').value}:{action:'login',phone,password};const data=await authRequest(payload);customerSession=data.token;customerUser=data.user;localStorage.setItem('kary-customer-session',JSON.stringify(customerSession));await renderProfile();toast(profileMode==='register'?'Профиль создан':'Вы вошли в профиль')}catch(err){$('profileError').textContent=err.message;btn.disabled=false;btn.textContent=profileMode==='register'?'Создать профиль':'Войти'}};
+ $('profileForm').onsubmit=async e=>{e.preventDefault();const btn=$('profileForm').querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Подождите…';const phone=$('profilePrefix').value+$('profilePhone').value.replace(/\D/g,'');const password=$('profilePassword').value;try{const payload=profileMode==='register'?{action:'register',phone,telegram_username:$('profileTelegram').value,password,full_name:$('profileFullName').value,referral_code:$('profileReferral').value}:{action:'login',phone,password};const data=await authRequest(payload);customerSession=data.token;customerUser=data.user;localStorage.setItem('kary-customer-session',JSON.stringify(customerSession));await renderProfile();toast(profileMode==='register'?'Профиль создан':'Вы вошли в профиль');if(PUBLISHER_MODE)initializePublisher()}catch(err){$('profileError').textContent=err.message;btn.disabled=false;btn.textContent=profileMode==='register'?'Создать профиль':'Войти'}};
 }
 function orderStatusLabel(status){return status==='issued'?'Выдан':status==='processing'?'В обработке':'Принят'}
 async function renderProfile(){
@@ -439,6 +493,60 @@ setInterval(()=>{if($('profileModal').classList.contains('open'))refreshProfileO
 // Карусель преимуществ: автолистание и точки синхронно со слайдом.
 (function(){const viewport=$('benefitsViewport'),dots=[...document.querySelectorAll('[data-benefit]')];if(!viewport||!dots.length)return;let index=0,timer=null,frame=false;const paint=()=>dots.forEach((d,i)=>d.classList.toggle('active',i===index));function go(n,behavior='smooth'){index=(n+dots.length)%dots.length;viewport.scrollTo({left:index*viewport.clientWidth,behavior});paint()}function start(){if(timer)clearInterval(timer);timer=setInterval(()=>go(index+1),3000)}function pause(){if(timer)clearInterval(timer);timer=null}viewport.addEventListener('scroll',()=>{if(frame)return;frame=true;requestAnimationFrame(()=>{index=Math.max(0,Math.min(dots.length-1,Math.round(viewport.scrollLeft/(viewport.clientWidth||1))));paint();frame=false})},{passive:true});dots.forEach(d=>d.addEventListener('click',()=>{go(Number(d.dataset.benefit));start()}));viewport.addEventListener('pointerdown',pause,{passive:true});window.addEventListener('pointerup',()=>{if(!document.hidden)start()},{passive:true});window.addEventListener('resize',()=>go(index,'auto'));document.addEventListener('visibilitychange',()=>document.hidden?pause():start());start()})();
 
+
+const PUBLISHER_MODE=new URLSearchParams(location.search).get('publisher')==='1';
+if(PUBLISHER_MODE)document.body.classList.add('publisher-mode');
+async function publisherRequest(payload){
+ const r=await fetch(SUPABASE_URL+'/functions/v1/kary-channel-publish',{
+  method:'POST',
+  headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY},
+  body:JSON.stringify(payload)
+ });
+ const data=await r.json().catch(()=>({}));
+ if(!r.ok||!data.ok)throw new Error(data.error||'Не удалось выполнить действие');
+ return data;
+}
+function publisherStatus(message,type=''){
+ const el=$('publisherStatus');if(!el)return;
+ el.textContent=message;el.className='publisher-status'+(type?' '+type:'');
+}
+async function initializePublisher(){
+ if(!PUBLISHER_MODE)return;
+ const gate=$('publisherGate'),editor=$('publisherEditor');
+ if(!customerSession){
+  gate.innerHTML='<p class="publisher-lead">Сначала войди в свой профиль KARY STORE. Доступ проверяется по серверной сессии владельца.</p><button class="publisher-login" id="publisherLogin" type="button">Войти в профиль KARY STORE</button>';
+  $('publisherLogin').onclick=()=>openProfile();
+  publisherStatus('Вход не выполнен. После авторизации доступ проверится автоматически.');return;
+ }
+ gate.innerHTML='<p class="publisher-lead">Проверяем права владельца…</p>';
+ editor.hidden=true;
+ publisherStatus('Проверяем доступ…');
+ try{
+  await publisherRequest({action:'check',token:customerSession});
+  gate.innerHTML='<p class="publisher-lead">Доступ подтверждён. Можно подготовить публикацию.</p>';
+  editor.hidden=false;
+  const area=$('publisherText'),counter=$('publisherCounter'),button=$('publisherPublish');
+  const update=()=>{counter.textContent=area.value.length+' / 4096';button.disabled=!area.value.trim()||area.value.length>4096};
+  area.addEventListener('input',update);
+  button.onclick=async()=>{
+   const message=area.value.trim();if(!message)return;
+   if(!confirm('Опубликовать этот текст в Telegram-канале @karystoreru?'))return;
+   button.disabled=true;button.textContent='Отправляем…';publisherStatus('Отправляем публикацию в канал…');
+   try{
+    const result=await publisherRequest({action:'publish',token:customerSession,text:message,disable_web_page_preview:$('publisherNoPreview').checked});
+    area.value='';update();publisherStatus('Опубликовано в @karystoreru. ID сообщения: '+result.message_id,'success');
+   }catch(error){publisherStatus(error.message||'Не удалось опубликовать пост','error')}
+   finally{button.textContent='Опубликовать в Telegram ↗';update()}
+  };
+  update();publisherStatus('Доступ подтверждён. Черновик пока не отправлен.','success');
+ }catch(error){
+  gate.innerHTML='<p class="publisher-lead">'+esc(error.message||'Доступ закрыт')+'</p>'+(String(error.message||'').includes('Войди')||String(error.message||'').includes('Сессия')?'<button class="publisher-login" id="publisherLogin" type="button">Войти в профиль KARY STORE</button>':'');
+  const login=$('publisherLogin');if(login)login.onclick=()=>openProfile();
+  publisherStatus(error.message||'Нет доступа к редактору','error');
+ }
+}
+
+if(PUBLISHER_MODE)initializePublisher();
 loadCatalog();
 </script>
 </body>
