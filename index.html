@@ -173,6 +173,79 @@
 .showreel-frame{overflow:hidden;border-radius:22px;background:#07152e;box-shadow:0 16px 38px rgba(12,35,66,.16);border:1px solid rgba(23,105,232,.16)}
 .showreel-video{display:block;width:100%;max-height:460px;aspect-ratio:16/9;object-fit:contain;background:#07152e}
 @media(max-width:640px){.showreel-section{padding:12px 0 22px}.showreel-heading{align-items:center}.showreel-heading h2{font-size:20px}.showreel-frame{border-radius:16px}.showreel-video{aspect-ratio:16/9;max-height:300px}}
+
+/* KARY STORE — фиолетовая палитра личного кабинета */
+#profileModal .modal-card{background:#0E0B1D!important;color:#C9C2E3;border:1px solid #2A1E4D}
+#profileModal .modal-card>.eyebrow{color:#8B7CC7}
+#profileModal .modal-card>h2{color:#C9C2E3}
+#profileContent:has(.profile-hero){color:#C9C2E3}
+#profileContent:has(.profile-hero)>.profile-hero{
+ background:radial-gradient(ellipse at 90% 5%,#5A3B8C88,transparent 42%),linear-gradient(145deg,#2A1E4D 0%,#0E0B1D 100%);
+ border:1px solid #5A3B8C;box-shadow:0 14px 34px #0E0B1D99
+}
+#profileContent:has(.profile-hero)>.profile-hero:after{border-color:#8B7CC755;box-shadow:0 0 0 22px #8B7CC71a,0 0 0 48px #8B7CC710}
+#profileContent:has(.profile-hero)>.profile-hero .profile-hero-top,
+#profileContent:has(.profile-hero)>.profile-hero .profile-greeting,
+#profileContent:has(.profile-hero)>.profile-hero .profile-id-row small,
+#profileContent:has(.profile-hero)>.profile-hero .profile-balance span,
+#profileContent:has(.profile-hero)>.profile-hero .profile-balance small{color:#C9C2E3}
+#profileContent:has(.profile-hero)>.profile-hero h2,
+#profileContent:has(.profile-hero)>.profile-hero .profile-balance strong{color:#fff}
+#profileContent:has(.profile-hero)>.profile-hero .profile-member,
+#profileContent:has(.profile-hero)>.profile-hero .profile-id-row button,
+#profileContent:has(.profile-hero)>.profile-hero .profile-balance{background:#5A3B8C55;border-color:#8B7CC766;color:#fff}
+#profileContent:has(.profile-hero)>.profile-contact,
+#profileContent:has(.profile-hero)>.profile-card,
+#profileContent:has(.profile-hero)>.profile-section{
+ background:linear-gradient(145deg,#2A1E4D,#17112d)!important;color:#C9C2E3!important;
+ border:1px solid #5A3B8C!important;box-shadow:0 8px 24px #0E0B1D66!important
+}
+#profileContent:has(.profile-hero)>.profile-contact b,
+#profileContent:has(.profile-hero)>.profile-card h3,
+#profileContent:has(.profile-hero)>.profile-section h3,
+#profileContent:has(.profile-hero)>.profile-card .balance-history-row b,
+#profileContent:has(.profile-hero)>.profile-section .order-card .order-top b{color:#fff!important}
+#profileContent:has(.profile-hero)>.profile-contact span,
+#profileContent:has(.profile-hero)>.profile-card p,
+#profileContent:has(.profile-hero)>.profile-section p,
+#profileContent:has(.profile-hero)>.profile-card .balance-history-row small,
+#profileContent:has(.profile-hero)>.profile-section .order-card .order-items,
+#profileContent:has(.profile-hero)>.profile-section .order-card .order-meta{color:#C9C2E3!important}
+#profileContent:has(.profile-hero)>.profile-card .profile-form input,
+#profileContent:has(.profile-hero)>.profile-card .profile-ref-link input,
+#profileContent:has(.profile-hero)>.profile-section .order-card{
+ background:#0E0B1D!important;color:#C9C2E3!important;border:1px solid #5A3B8C!important
+}
+#profileContent:has(.profile-hero) input::placeholder{color:#8B7CC7!important}
+#profileContent:has(.profile-hero) .profile-ref-link button,
+#profileContent:has(.profile-hero) .profile-form button:not(.profile-logout),
+#profileContent:has(.profile-hero) .transfer-submit,
+#profileContent:has(.profile-hero) .topup-submit{background:linear-gradient(135deg,#8B7CC7,#5A3B8C)!important;color:#fff!important;border:1px solid #8B7CC7!important}
+#profileContent:has(.profile-hero) .topup-panel,
+#profileContent:has(.profile-hero) .transfer-panel{
+ background:linear-gradient(145deg,#2A1E4D,#0E0B1D)!important;border:1px solid #5A3B8C!important;color:#C9C2E3!important
+}
+#profileContent:has(.profile-hero) .topup-panel p,
+#profileContent:has(.profile-hero) .transfer-panel p{color:#C9C2E3!important}
+#profileContent:has(.profile-hero) .topup-controls select,
+#profileContent:has(.profile-hero) .topup-controls input,
+#profileContent:has(.profile-hero) .transfer-fields input,
+#profileContent:has(.profile-hero) .referral-convert-row input{
+ background:#0E0B1D!important;border:1px solid #5A3B8C!important;color:#C9C2E3!important
+}
+#profileContent:has(.profile-hero) .profile-balance-warning{background:#5A3B8C33;border-color:#8B7CC7;color:#C9C2E3}
+#profileContent:has(.profile-hero) .profile-balance-warning span{color:#C9C2E3}
+#profileContent:has(.profile-hero) .profile-balance-warning b{color:#fff}
+#profileContent:has(.profile-hero) .profile-balance-warning small{color:#C9C2E3}
+#profileContent:has(.profile-hero) .profile-logout{background:#0E0B1D!important;color:#C9C2E3!important;border:1px solid #5A3B8C!important}
+#profileModal .modal-card>.modal-close{background:#2A1E4D!important;border:1px solid #5A3B8C!important;color:#fff!important}
+#profileContent:has(.profile-hero) .profile-switch button{background:#0E0B1D;border:1px solid #5A3B8C;color:#C9C2E3}
+#profileContent:has(.profile-hero) .profile-switch button.active{background:#5A3B8C;border-color:#8B7CC7;color:#fff}
+@media(max-width:700px){
+ #profileModal .modal-card{background:#0E0B1D!important;border-color:#2A1E4D!important}
+ #profileModal .modal-card>h2{color:#C9C2E3!important}
+}
+
 </style>
 <style>
 .publisher-page{display:none;min-height:100vh;padding:34px 16px 60px;background:radial-gradient(ellipse at 15% 0%,#6d39b833,transparent 35%),radial-gradient(ellipse at 100% 80%,#1769e833,transparent 35%),#080f20;color:#f3f6ff}
