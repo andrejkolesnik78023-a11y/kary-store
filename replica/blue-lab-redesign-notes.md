@@ -38,3 +38,11 @@ Visual redesign for KARY STORE based on the public BlueLab reference. This is an
 - Re-ran JavaScript syntax checks for the inline app and enhancement scripts, plus CSS brace-balance checks: PASS.
 - GitHub compare confirms the work remains isolated on this branch; `main` remains unchanged.
 - Browser rendering and live purchase/auth regression testing are still pending; no deployment performed.
+
+
+## Isolated browser QA setup
+- Added `tests/kary-browser-check.cjs` with mocked catalog data and Playwright coverage for catalog rendering, discount/favorites/price filters, search, product details, recently viewed history, mobile horizontal overflow, uncaught page errors, and desktop/mobile screenshots.
+- Added `.github/workflows/kary-browser-checks.yml` to run checks on pushes, pull requests to `main`, or manual dispatch; screenshots are retained as a 7-day workflow artifact.
+- Opened draft PR #1 for review and isolated testing: https://github.com/andrejkolesnik78023-a11y/kary-store/pull/1.
+- No merge, production deployment, GitHub Pages settings change, custom-domain change, or Supabase schema/Edge Function change.
+- Workflow execution has not yet been confirmed in this session. Playwright uses mocked Supabase REST responses; real authentication, checkout, and payments are intentionally outside this test suite.
