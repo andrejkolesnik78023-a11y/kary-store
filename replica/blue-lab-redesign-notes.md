@@ -26,3 +26,15 @@ Visual redesign for KARY STORE based on the public BlueLab reference. This is an
 - Real browser rendering at mobile and desktop widths.
 - Full interaction regression test on the live Supabase project.
 - Real preview deployment. GitHub Pages settings were not changed.
+
+
+## Stage 2 — functional catalog and trust content
+- Added working filters for discounted products, favorites, and maximum price.
+- Unified product card rendering so catalog and recently viewed cards share the same actions.
+- Added a persistent recently viewed list (up to 8 products) with a clear-history action.
+- Expanded the product detail modal with the product image, category, description, sales count, and pricing.
+- Added a three-step purchase explainer and FAQ section.
+- Kept all new behavior client-side; no new Supabase calls, schema changes, Edge Function changes, or payment changes.
+- Re-ran JavaScript syntax checks for the inline app and enhancement scripts, plus CSS brace-balance checks: PASS.
+- GitHub compare confirms the work remains isolated on this branch, 7 commits ahead of `main`; `main` remains unchanged.
+- Browser rendering and live purchase/auth regression testing are still pending; no deployment performed.
