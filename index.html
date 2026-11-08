@@ -286,10 +286,11 @@ body.publisher-mode main,body.publisher-mode .bottom-nav,body.publisher-mode #ca
  <link rel="stylesheet" href="./assets/kary-bluelab-theme.css?v=7">
 
 <style id="kary-main-catalog-layout-fix">
-/* Каталог: две равные колонки на всю ширину. Не затрагивает историю просмотров и другие сетки. */
-#products.product-grid{
+/* Высокая специфичность перекрывает старые правила каталога и темы. */
+html body main.container #catalog #products.product-grid{
   display:grid!important;
   grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-auto-flow:row!important;
   align-items:stretch!important;
   justify-content:stretch!important;
   gap:10px!important;
@@ -297,8 +298,9 @@ body.publisher-mode main,body.publisher-mode .bottom-nav,body.publisher-mode #ca
   max-width:none!important;
   min-width:0!important;
 }
-#products.product-grid>.product{
+html body main.container #catalog #products.product-grid>.product{
   display:flex!important;
+  flex:initial!important;
   flex-direction:column!important;
   box-sizing:border-box!important;
   width:100%!important;
@@ -307,13 +309,16 @@ body.publisher-mode main,body.publisher-mode .bottom-nav,body.publisher-mode #ca
   margin:0!important;
   grid-column:auto!important;
 }
-#products.product-grid>.empty{
+html body main.container #catalog #products.product-grid>.empty{
   grid-column:1/-1!important;
   width:100%!important;
   max-width:none!important;
 }
-#products.product-grid>.product .product-media{width:100%;min-width:0}
-#products.product-grid>.product .product-info{width:100%;min-width:0}
+html body main.container #catalog #products.product-grid>.product .product-media,
+html body main.container #catalog #products.product-grid>.product .product-info{
+  width:100%!important;
+  min-width:0!important;
+}
 </style>
 
 </head>
