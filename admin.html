@@ -20,11 +20,11 @@
  render=function(){
    const original=products;
    const q=$("search").value.toLowerCase().trim();
-   catFilter=$("filterCat").value||catFilter;statusFilter=$("filterStatus").value||statusFilter;
+   catFilter=$("filterCat").value;statusFilter=$("filterStatus").value;
    products=original.filter(p=>(p.name+" "+p.description).toLowerCase().includes(q)&&(!catFilter||String(p.category_id)===catFilter)&&(!statusFilter||(statusFilter==="active"?p.is_active:!p.is_active)));
    $("filterCat").innerHTML='<option value="">Все категории</option>'+categories.map(c=>'<option value="'+c.id+'">'+esc((c.icon||"")+" "+c.name)+'</option>').join("");
    $("filterCat").value=catFilter;$("filterStatus").value=statusFilter;
-   baseRender();products=original;
+   baseRender();products=original;$("total").textContent=original.length;$("active").textContent=original.filter(p=>p.is_active).length;$("cats").textContent=categories.length;
    document.querySelectorAll("#list .item").forEach(el=>{
      const b=el.querySelector("[data-edit]");if(!b)return;
      const id=b.getAttribute("data-edit"),cb=document.createElement("input");cb.type="checkbox";cb.className="pick";cb.checked=selected.has(id);cb.addEventListener("change",()=>{cb.checked?selected.add(id):selected.delete(id);updateSelected()});el.prepend(cb);
@@ -77,6 +77,6 @@ function closeForm(){$("modal").classList.remove("show")}
 $("list").addEventListener("click",e=>{let b=e.target.closest("[data-edit]");if(b)openForm(products.find(p=>String(p.id)===b.dataset.edit))});$("add").onclick=()=>openForm();$("close").onclick=$("cancel").onclick=closeForm;$("search").oninput=render;
 $("photo").onchange=()=>{selectedFile=$("photo").files[0]||null;if(selectedFile){$("preview").src=URL.createObjectURL(selectedFile);$("preview").hidden=false}};$("imageUrl").oninput=()=>{if(!$("photo").files.length&&$("imageUrl").value){$("preview").src=$("imageUrl").value;$("preview").hidden=false}};
 function fileData(file){return new Promise((resolve,reject)=>{let r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file)})}
-$("form").onsubmit=async e=>{e.preventDefault();let b=$("save");b.disabled=true;b.textContent="Сохраняем…";try{let p={id:$("pid").value||null,name:$("name").value,description:$("description").value,price:$("price").value,original_price:$("oldPrice").value||null,category_id:$("category").value,image_url:$("imageUrl").value,is_active:$("published").checked};if(selectedFile)p.image_data=await fileData(selectedFile);await call("save",{product:p});closeForm();await load();toast("Изменения сохранены ✓")}catch(err){toast(err.message)}finally{b.disabled=false;b.textContent="Сохранить"}};
+$("form").onsubmit=async e=>{e.preventDefault();let b=$("save");b.disabled=true;b.textContent="Сохраняем…";try{let p={id:$("pid").value||null,name:$("name").value,description:$("description").value,price:$("price").value,original_price:$("oldPrice").value||null,category_id:$("category").value,image_url:$("clearPhoto").checked?null:$("imageUrl").value,is_active:$("published").checked};if(selectedFile)p.image_data=await fileData(selectedFile);await call("save",{product:p});closeForm();await load();toast("Изменения сохранены ✓")}catch(err){toast(err.message)}finally{b.disabled=false;b.textContent="Сохранить"}};
 async function load(){try{let d=await call("list");products=d.products||[];categories=d.categories||[];render()}catch(e){$("list").innerHTML='<div class="empty">'+esc(e.message)+'</div>';toast(e.message)}}load();
 </script></body></html>
