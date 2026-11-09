@@ -712,13 +712,31 @@ function profileForm(){
    customerSession=data.token;customerUser=data.user;
    localStorage.setItem('kary-customer-session',JSON.stringify(customerSession));
    toast(mode==='register'?'Профиль создан':'Вы вошли в профиль');
-   await renderProfile();loadReviews();async function loadCreations(){const track=$('creationsTrack');if(!track)return;try{const {data,error}=await db.from('kary_creations').select('id,title,description,video_url,created_at').eq('is_published',true).order('sort_order',{ascending:true}).order('created_at',{ascending:false});if(error)throw error;if(!data?.length){track.innerHTML='<div class="creations-empty">Скоро здесь появятся наши видео 🎬</div>';return}track.innerHTML=data.map(v=>'<article class="creation-card"><div class="creation-video-wrap"><video class="creation-video" controls playsinline preload="metadata" src="'+esc(v.video_url)+'"></video></div><div class="creation-copy"><b>'+esc(v.title)+'</b>'+(v.description?'<p>'+esc(v.description)+'</p>':'')+'</div></article>').join('');track.querySelectorAll('video').forEach(video=>video.addEventListener('play',()=>track.querySelectorAll('video').forEach(other=>{if(other!==video)other.pause()})))}catch(error){track.innerHTML='<div class="creations-empty">Не удалось загрузить видео. Попробуй обновить страницу.</div>';console.error('KARY creations:',error)}}$('creationsPrev')?.addEventListener('click',()=> $('creationsTrack')?.scrollBy({left:-260,behavior:'smooth'}));$('creationsNext')?.addEventListener('click',()=> $('creationsTrack')?.scrollBy({left:260,behavior:'smooth'}));loadCreations();
+   await renderProfile();loadReviews();
 if(PUBLISHER_MODE)initializePublisher();
   }catch(err){
    showError(err.message||'Не удалось выполнить запрос. Проверь интернет и попробуй ещё раз.');
    btn.disabled=false;btn.textContent=mode==='register'?'Создать профиль':'Войти';
   }
  };
+}
+async function loadCreations(){
+ const track=$('creationsTrack');if(!track)return;
+ track.innerHTML='<div class="creations-empty">Загружаем видео…</div>';
+ try{
+  const {data,error}=await db.from('kary_creations')
+   .select('id,title,description,video_url,created_at')
+   .eq('is_published',true)
+   .order('sort_order',{ascending:true})
+   .order('created_at',{ascending:false});
+  if(error)throw error;
+  if(!data?.length){track.innerHTML='<div class="creations-empty">Скоро здесь появятся наши видео 🎬</div>';return}
+  track.innerHTML=data.map(v=>'<article class="creation-card"><div class="creation-video-wrap"><video class="creation-video" controls playsinline preload="metadata" src="'+esc(v.video_url)+'"></video></div><div class="creation-copy"><b>'+esc(v.title)+'</b>'+(v.description?'<p>'+esc(v.description)+'</p>':'')+'</div></article>').join('');
+  track.querySelectorAll('video').forEach(video=>video.addEventListener('play',()=>track.querySelectorAll('video').forEach(other=>{if(other!==video)other.pause()})));
+ }catch(error){
+  track.innerHTML='<div class="creations-empty">Не удалось загрузить видео. Попробуй обновить страницу.</div>';
+  console.error('KARY creations:',error);
+ }
 }
 function orderStatusLabel(status){return status==='issued'?'Выдан':status==='processing'?'В обработке':'Принят'}
 async function renderProfile(){
@@ -856,6 +874,9 @@ async function initializePublisher(){
 if(PUBLISHER_MODE)initializePublisher();
 loadCatalog().then(()=>{const productId=new URLSearchParams(location.search).get('product');if(productId)openProduct(productId)});
 loadReviews();
+$('creationsPrev')?.addEventListener('click',()=> $('creationsTrack')?.scrollBy({left:-260,behavior:'smooth'}));
+$('creationsNext')?.addEventListener('click',()=> $('creationsTrack')?.scrollBy({left:260,behavior:'smooth'}));
+loadCreations();
 </script>
 
 
