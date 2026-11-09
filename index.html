@@ -991,6 +991,27 @@ document.addEventListener('click',async function(event){
   background:linear-gradient(110deg,#1769e8,#6848d9)!important;
   color:#fff!important;
 }
+
+/* Consistent product card alignment */
+.product{display:flex;flex-direction:column;height:100%;min-width:0}
+.product-info{display:flex;flex:1;flex-direction:column;min-height:0}
+.product h3{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;min-height:40px;max-height:40px;line-height:20px}
+.product-desc{min-height:32px;max-height:32px;-webkit-line-clamp:2;line-height:16px;margin-bottom:8px}
+.sales-count{min-height:24px;max-height:24px;box-sizing:border-box;margin-bottom:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.product-foot{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-end;gap:8px;margin-top:auto;width:100%}
+.prices{min-height:35px;justify-content:center;gap:1px}
+.product-actions{display:flex;align-items:center;gap:7px;width:100%}
+.product-actions .favorite{width:38px;height:38px;flex:0 0 38px}
+.product-actions .buy-btn{flex:1;min-width:0;height:38px;padding:0 8px;display:flex;align-items:center;justify-content:center;white-space:nowrap}
+@media(max-width:640px){
+ .product-info{padding:10px;min-height:0}
+ .product h3{min-height:36px;max-height:36px;line-height:18px;font-size:12px}
+ .product-desc{min-height:30px;max-height:30px;line-height:15px;font-size:10px}
+ .prices{min-height:33px}
+ .product-actions{gap:6px}
+ .product-actions .favorite{width:36px;height:36px;flex-basis:36px}
+ .product-actions .buy-btn{height:36px;padding:0 5px;font-size:10px}
+}
 </style>
 
 </body>
