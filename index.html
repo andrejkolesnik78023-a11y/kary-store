@@ -247,6 +247,29 @@
 }
 
 
+
+/* KARY STORE — полезные AI-команды */
+.useful-commands{position:relative;isolation:isolate;overflow:hidden;margin:30px 0 34px;padding:clamp(22px,3.5vw,38px);border:1px solid rgba(133,111,255,.27);border-radius:28px;background:radial-gradient(ellipse at 8% 0%,rgba(71,93,255,.19),transparent 42%),radial-gradient(ellipse at 100% 100%,rgba(160,76,255,.16),transparent 45%),linear-gradient(135deg,#10152d 0%,#15132d 52%,#101a35 100%);box-shadow:0 18px 55px rgba(3,6,25,.24)}
+.useful-commands:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(115deg,transparent 25%,rgba(255,255,255,.025) 48%,transparent 70%)}
+.commands-head{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;margin-bottom:23px}
+.commands-kicker{display:inline-flex;align-items:center;gap:8px;margin-bottom:10px;color:#9d9cff;font-size:10px;font-weight:900;letter-spacing:1.8px;text-transform:uppercase}
+.commands-kicker:before{content:"";width:7px;height:7px;border-radius:50%;background:#8d83ff;box-shadow:0 0 12px #8d83ff}
+.commands-head h2{margin:0;color:#fff;font-size:clamp(21px,3vw,29px);line-height:1.15;font-weight:900;letter-spacing:-.5px}
+.commands-head p{max-width:560px;margin:9px 0 0;color:#aeb8d6;font-size:13px;line-height:1.6}
+.commands-free{flex:none;padding:8px 12px;border:1px solid rgba(105,235,190,.25);border-radius:999px;background:rgba(64,220,166,.09);color:#8df0c8;font-size:10px;font-weight:900;letter-spacing:.8px}
+.commands-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.command-card{min-width:0;padding:19px;border:1px solid rgba(177,183,255,.13);border-radius:19px;background:rgba(255,255,255,.045);transition:transform .2s ease,border-color .2s ease,background .2s ease}
+.command-card:hover{transform:translateY(-3px);border-color:rgba(157,145,255,.48);background:rgba(255,255,255,.075)}
+.command-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:17px}
+.command-icon{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,rgba(101,117,255,.24),rgba(183,91,255,.2));color:#c6c4ff;font-size:17px}
+.command-tag{color:#7f8bad;font-size:9px;font-weight:800;letter-spacing:1px}
+.command-name{display:inline-block;margin-bottom:9px;color:#d5caff;font-size:17px;font-weight:950;letter-spacing:.2px}
+.command-card p{min-height:57px;margin:0;color:#b5bfd9;font-size:12px;line-height:1.6}
+.command-copy{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;margin-top:17px;padding:11px 13px;border:1px solid rgba(151,139,255,.28);border-radius:11px;background:rgba(117,99,255,.13);color:#e5e1ff;font-size:11px;font-weight:850;cursor:pointer;transition:background .2s ease,border-color .2s ease}
+.command-copy:hover{background:rgba(117,99,255,.24);border-color:rgba(173,160,255,.6)}
+.command-copy.copied{border-color:rgba(90,224,170,.4);background:rgba(61,210,154,.12);color:#9af0cb}
+@media(max-width:680px){.useful-commands{margin:22px 0 26px;padding:20px 15px;border-radius:22px}.commands-head{align-items:flex-start;flex-direction:column;gap:12px}.commands-grid{grid-template-columns:1fr;gap:10px}.command-card{padding:16px}.command-card p{min-height:0}.command-top{margin-bottom:12px}}
+
 </style>
 <style>
 .publisher-page{display:none;min-height:100vh;padding:34px 16px 60px;background:radial-gradient(ellipse at 15% 0%,#6d39b833,transparent 35%),radial-gradient(ellipse at 100% 80%,#1769e833,transparent 35%),#080f20;color:#f3f6ff}
@@ -294,6 +317,38 @@ body.publisher-mode main,body.publisher-mode .bottom-nav,body.publisher-mode #ca
 <div class="promo">✦ Скидка на первый заказ — 10% на все товары ✦</div>
 <main class="container">
 <section class="hero"><div class="hero-copy"><div class="eyebrow">Цифровой магазин нового формата</div><h1>ПОКУПАЙ<br><span>УМНО.</span> ЗАКАЗЫВАЙ<br>БЫСТРО.</h1><p>Дизайн, цифровые услуги и полезные решения — собрали всё в одном месте. Выбирай товар, добавляй в корзину и оформляй заказ в пару нажатий.</p></div><div class="hero-visual"><small>WELCOME TO KARY STORE</small><strong>ТВОИ ИДЕИ.<br>НАШИ РЕШЕНИЯ.</strong></div></section>
+
+<section class="useful-commands" id="usefulCommands" aria-label="Бесплатные AI-команды для фото товаров">
+  <div class="commands-head">
+    <div>
+      <span class="commands-kicker">KARY AI TOOLS</span>
+      <h2>Попробуй бесплатные команды для фото своих товаров</h2>
+      <p>Скопируй команду, отправь её вместе с фотографией товара в поддерживаемый ИИ-сервис и получи новое оформление.</p>
+    </div>
+    <span class="commands-free">БЕСПЛАТНО</span>
+  </div>
+  <div class="commands-grid">
+    <article class="command-card">
+      <div class="command-top"><span class="command-icon">✦</span><span class="command-tag">STUDIO PHOTO</span></div>
+      <span class="command-name">/PACKSHOT</span>
+      <p>Превращает обычное фото в аккуратный студийный packshot: чистый фон, мягкий свет и внимание к самому товару.</p>
+      <button class="command-copy" type="button" data-command="/PACKSHOT">⧉ Скопировать команду</button>
+    </article>
+    <article class="command-card">
+      <div class="command-top"><span class="command-icon">◈</span><span class="command-tag">ADVERTISING</span></div>
+      <span class="command-name">/PRODUCTSHOT</span>
+      <p>Создаёт эффектный рекламный кадр: атмосферная сцена, выразительное освещение и премиальная подача продукта.</p>
+      <button class="command-copy" type="button" data-command="/PRODUCTSHOT">⧉ Скопировать команду</button>
+    </article>
+    <article class="command-card">
+      <div class="command-top"><span class="command-icon">▣</span><span class="command-tag">MARKETPLACE</span></div>
+      <span class="command-name">/MARKETPLACE</span>
+      <p>Готовит товарное изображение для маркетплейсов: понятная композиция, чистая подача и акцент на важных деталях.</p>
+      <button class="command-copy" type="button" data-command="/MARKETPLACE">⧉ Скопировать команду</button>
+    </article>
+  </div>
+</section>
+
 <section class="showreel-section" aria-label="Видео KARY STORE">
   <div class="showreel-heading">
     <div><span class="showreel-eyebrow">KARY STORE VIDEO</span><h2>Знакомься с KARY STORE</h2><p>Наше видео — прямо здесь, перед каталогом</p></div>
@@ -674,5 +729,24 @@ loadCatalog();
 
 
  <script src="./assets/kary-bluelab-interactions.js?v=2"></script>
+
+<script>
+document.addEventListener('click',async function(event){
+  const button=event.target.closest('.command-copy[data-command]');
+  if(!button)return;
+  const command=button.getAttribute('data-command');
+  const original=button.textContent;
+  try{
+    if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(command);}
+    else{
+      const field=document.createElement('textarea');field.value=command;field.style.position='fixed';field.style.opacity='0';document.body.appendChild(field);field.select();
+      const copied=document.execCommand('copy');field.remove();if(!copied)throw new Error('copy failed');
+    }
+    button.textContent='✓ Скопировано';button.classList.add('copied');
+    setTimeout(()=>{button.textContent=original;button.classList.remove('copied');},1600);
+  }catch(error){button.textContent='Не удалось скопировать';setTimeout(()=>button.textContent=original,1800);}
+});
+</script>
+
 </body>
 </html>
