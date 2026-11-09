@@ -481,7 +481,7 @@ const SUPPORT_URL=SUPABASE_URL+'/functions/v1/kary-support';
 let supportTicket=readStore('kary-support-ticket',null),supportPolling=null;
 function supportDot(show){$('supportUnreadDot').hidden=!show}
 async function supportRequest(payload){
- const r=await fetch(SUPPORT_URL,{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY},body:JSON.stringify(payload)});
+ const r=await fetch(SUPPORT_URL,{method:'POST',body:JSON.stringify(payload),cache:'no-store',headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY,'Cache-Control':'no-cache'}});
  const data=await r.json().catch(()=>({}));
  if(!r.ok||!data.ok)throw new Error(data.error||'Поддержка временно недоступна');
  return data;
@@ -509,7 +509,7 @@ async function openSupport(){
  openOverlay('supportModal');
  try{await ensureSupportTicket();await pollSupport(true)}catch(e){$('supportMessages').innerHTML='<div class="empty">'+esc(e.message)+'</div>'}
  if(supportPolling)clearInterval(supportPolling);
- supportPolling=setInterval(()=>pollSupport($('supportModal').classList.contains('open')),5000);
+ supportPolling=setInterval(()=>pollSupport($('supportModal').classList.contains('open')),2500);
 }
 async function sendSupportMessage(){
  const message=$('supportInput').value.trim();if(!message){toast('Напиши сообщение');return}
@@ -519,6 +519,8 @@ async function sendSupportMessage(){
  finally{button.disabled=false;button.textContent='Отправить'}
 }
 $('navSupport').onclick=()=>{closeOverlay('profileModal');openSupport()};$('supportSend').onclick=sendSupportMessage;
+window.addEventListener('focus',()=>{if(supportTicket)pollSupport($('supportModal').classList.contains('open'))});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&supportTicket)pollSupport($('supportModal').classList.contains('open'))});
 $('supportInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendSupportMessage()}});
 
 const AUTH_URL=SUPABASE_URL+'/functions/v1/kary-customer-auth';
