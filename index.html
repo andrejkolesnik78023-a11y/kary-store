@@ -523,8 +523,11 @@ async function supportRequest(payload){
  return data;
 }
 async function ensureSupportTicket(){
- if(supportTicket?.ticket_id&&supportTicket?.token)return supportTicket;
- const data=await supportRequest({action:'create',label:'Посетитель KARY STORE'});
+ if(supportTicket?.ticket_id&&supportTicket?.token){
+  if(customerSession){try{await supportRequest({action:'attach_customer',ticket_id:supportTicket.ticket_id,token:supportTicket.token,customer_token:customerSession})}catch(e){console.warn('Support customer link:',e.message)}}
+  return supportTicket;
+ }
+ const data=await supportRequest({action:'create',label:'Посетитель KARY STORE',customer_token:customerSession||undefined});
  supportTicket={ticket_id:data.ticket_id,token:data.token};localStorage.setItem('kary-support-ticket',JSON.stringify(supportTicket));return supportTicket;
 }
 function renderSupportMessages(messages){
