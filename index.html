@@ -863,5 +863,53 @@ document.addEventListener('click',async function(event){
 <script>
 (function(){const isProductImage=t=>t instanceof Element&&!!t.closest('.product-media img,.cart-thumb img,.detail-image');document.addEventListener('contextmenu',e=>{if(isProductImage(e.target))e.preventDefault()},true);document.addEventListener('dragstart',e=>{if(isProductImage(e.target))e.preventDefault()},true);document.addEventListener('selectstart',e=>{if(isProductImage(e.target))e.preventDefault()},true)})();
 </script>
+
+<style id="kary-auth-contrast-fix">
+/* Контраст формы регистрации и входа */
+#profileModal .profile-switch button{
+  background:#132b4d!important;color:#dceaff!important;
+  border:1px solid #35577f!important;
+}
+#profileModal .profile-switch button.active{
+  background:linear-gradient(135deg,#1769e8,#6848d9)!important;
+  color:#fff!important;border-color:#5c8fff!important;
+  box-shadow:0 5px 16px rgba(48,105,232,.28)!important;
+}
+#profileModal #profileForm label{
+  color:#d5e5fb!important;
+}
+#profileModal #profileForm input,
+#profileModal #profileForm select,
+#profileModal #profileForm .profile-phone input,
+#profileModal #profileForm .profile-phone select{
+  background:#102747!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border:1px solid #42658f!important;
+  caret-color:#8fc5ff!important;
+  color-scheme:dark;
+}
+#profileModal #profileForm input::placeholder{
+  color:#a9bfdc!important;
+  -webkit-text-fill-color:#a9bfdc!important;
+  opacity:1!important;
+}
+#profileModal #profileForm select option{
+  background:#102747!important;color:#fff!important;
+}
+#profileModal #profileForm input:focus,
+#profileModal #profileForm select:focus{
+  border-color:#55a1ff!important;
+  box-shadow:0 0 0 3px rgba(49,130,246,.2)!important;
+}
+#profileModal #profileForm .profile-note{
+  color:#b8cbe3!important;
+}
+#profileModal #profileForm button[type="submit"]{
+  background:linear-gradient(110deg,#1769e8,#6848d9)!important;
+  color:#fff!important;
+}
+</style>
+
 </body>
 </html>
