@@ -210,3 +210,22 @@ body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 #supportSend:disabled{opacity:.65;cursor:wait}
 
 
+
+/* Компактный блок направлений каталога */
+.lab-experience{margin:0 0 22px;padding:15px 18px;border-radius:18px}
+.lab-experience:after{width:220px;height:220px;right:-110px;top:-160px}
+.lab-topline{align-items:center}
+.lab-topline h2{font-size:15px;margin:3px 0 0}
+.lab-topline .eyebrow{font-size:8px;letter-spacing:1.4px}
+.lab-counter{font-size:10px}
+.lab-categories{display:flex;flex-wrap:nowrap;gap:8px;margin-top:12px;overflow-x:auto;padding:2px 1px 5px;scrollbar-width:none}
+.lab-categories::-webkit-scrollbar{display:none}
+.lab-category{flex:0 0 auto;min-height:0;min-width:118px;padding:9px 12px;border-radius:12px}
+.lab-category b{font-size:10px;margin-bottom:2px}
+.lab-category small{font-size:8px}
+@media(max-width:640px){
+ .lab-experience{padding:12px 13px;margin-bottom:17px}
+ .lab-topline h2{font-size:14px}
+ .lab-categories{gap:6px;margin-top:9px}
+ .lab-category{min-width:108px;padding:8px 10px}
+}
