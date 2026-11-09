@@ -162,16 +162,6 @@
 .referral-convert-row button:disabled{opacity:.6}
 .referral-convert-hint{display:block;margin:0 0 12px;color:#718096;font-size:10px;line-height:1.5}
 
-/* Видео-блок перед каталогом */
-.showreel-section{padding:18px 0 30px}
-.showreel-heading{display:flex;align-items:end;justify-content:space-between;gap:14px;margin-bottom:14px}
-.showreel-eyebrow{font-size:9px;font-weight:900;letter-spacing:2px;color:var(--blue)}
-.showreel-heading h2{margin:6px 0 4px;font-size:clamp(21px,3vw,27px);letter-spacing:-.8px}
-.showreel-heading p{margin:0;color:var(--muted);font-size:12px}
-.showreel-live{display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border-radius:30px;background:#eef5ff;color:#1769e8;font-size:9px;font-weight:900;letter-spacing:1px;white-space:nowrap}
-.showreel-live i{width:7px;height:7px;border-radius:50%;background:#20c46b;box-shadow:0 0 9px #20c46b88}
-.showreel-frame{overflow:hidden;border-radius:22px;background:#07152e;box-shadow:0 16px 38px rgba(12,35,66,.16);border:1px solid rgba(23,105,232,.16)}
-.showreel-video{display:block;width:100%;max-height:460px;aspect-ratio:16/9;object-fit:contain;background:#07152e}
 @media(max-width:640px){.showreel-section{padding:12px 0 22px}.showreel-heading{align-items:center}.showreel-heading h2{font-size:20px}.showreel-frame{border-radius:16px}.showreel-video{aspect-ratio:16/9;max-height:300px}}
 
 /* KARY STORE — фиолетовая палитра личного кабинета */
@@ -350,18 +340,7 @@ body.publisher-mode main,body.publisher-mode .bottom-nav,body.publisher-mode #ca
   </div>
 </section>
 
-<section class="showreel-section" aria-label="Видео KARY STORE">
-  <div class="showreel-heading">
-    <div><span class="showreel-eyebrow">KARY STORE VIDEO</span><h2>Знакомься с KARY STORE</h2><p>Наше видео — прямо здесь, перед каталогом</p></div>
-    <span class="showreel-live"><i></i> СМОТРИ</span>
-  </div>
-  <div class="showreel-frame">
-    <video class="showreel-video" autoplay muted loop playsinline controls preload="metadata">
-      <source src="https://raw.githubusercontent.com/andrejkolesnik78023-a11y/kary-store/main/-741751153674634553.mp4" type="video/mp4">
-      Ваш браузер не поддерживает воспроизведение видео.
-    </video>
-  </div>
-</section>
+
 <section class="section" id="catalog"><div class="section-head"><div><h2>Каталог товаров</h2><p>Выбирай нужное — остальное мы поможем сделать</p></div><span class="count" id="productCount">Загрузка…</span></div>
 <div class="search-row"><div class="search-wrap"><span class="search-icon" aria-hidden="true"></span><input class="search" id="search" type="search" placeholder="Найти товар или услугу…"></div><select class="sort" id="sort"><option value="popular">Сначала популярные</option><option value="price-up">Сначала дешевле</option><option value="price-down">Сначала дороже</option><option value="name">По названию</option></select></div>
 <div class="categories" id="categories"><button class="cat active" data-category="all">Все товары</button></div>
