@@ -354,7 +354,31 @@ body.publisher-mode main,body.publisher-mode .bottom-nav,body.publisher-mode #ca
 </style>
  <link rel="stylesheet" href="./assets/kary-bluelab-theme.css?v=9">
 
-<style id="kary-creations-style">.creations-section{padding:22px 0 38px;overflow:hidden}.creations-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:16px}.creations-head h2{margin:0;font-size:25px;letter-spacing:-.8px}.creations-head p{margin:6px 0 0;color:var(--muted);font-size:12px}.creations-controls{display:flex;gap:7px;flex-shrink:0}.creations-arrow{width:36px;height:36px;border-radius:12px;background:#172642;border:1px solid #38547c;color:#dceaff;font-size:19px}.creations-track{display:flex;gap:13px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:2px 2px 12px;scrollbar-width:thin;scrollbar-color:#536ba0 transparent}.creation-card{flex:0 0 clamp(190px,27vw,230px);min-width:0;scroll-snap-align:start;background:linear-gradient(145deg,#141e34,#0d1629);border:1px solid #2b4164;border-radius:18px;overflow:hidden;box-shadow:0 10px 30px #0003}.creation-video-wrap{background:#050a15;aspect-ratio:9/14;position:relative}.creation-video{width:100%;height:100%;display:block;object-fit:cover;background:#050a15}.creation-copy{padding:12px 13px 14px}.creation-copy b{display:block;font-size:14px;line-height:1.35}.creation-copy p{margin:6px 0 0;color:#aab8d3;font-size:11px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}.creations-empty{padding:24px 16px;text-align:center;border:1px dashed #354a6e;border-radius:16px;color:#a9b9d6;background:#101a2d}@media(max-width:560px){.creations-head h2{font-size:21px}.creation-card{flex-basis:66vw}.creations-controls{gap:5px}.creations-arrow{width:32px;height:32px}}</style></head>
+<style id="kary-creations-style">.creations-section{padding:22px 0 38px;overflow:hidden}.creations-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:16px}.creations-head h2{margin:0;font-size:25px;letter-spacing:-.8px}.creations-head p{margin:6px 0 0;color:var(--muted);font-size:12px}.creations-controls{display:flex;gap:7px;flex-shrink:0}.creations-arrow{width:36px;height:36px;border-radius:12px;background:#172642;border:1px solid #38547c;color:#dceaff;font-size:19px}.creations-track{display:flex;gap:13px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:2px 2px 12px;scrollbar-width:thin;scrollbar-color:#536ba0 transparent}.creation-card{flex:0 0 clamp(190px,27vw,230px);min-width:0;scroll-snap-align:start;background:linear-gradient(145deg,#141e34,#0d1629);border:1px solid #2b4164;border-radius:18px;overflow:hidden;box-shadow:0 10px 30px #0003}.creation-video-wrap{background:#050a15;aspect-ratio:9/14;position:relative}.creation-video{width:100%;height:100%;display:block;object-fit:cover;background:#050a15}.creation-copy{padding:12px 13px 14px}.creation-copy b{display:block;font-size:14px;line-height:1.35}.creation-copy p{margin:6px 0 0;color:#aab8d3;font-size:11px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}.creations-empty{padding:24px 16px;text-align:center;border:1px dashed #354a6e;border-radius:16px;color:#a9b9d6;background:#101a2d}@media(max-width:560px){.creations-head h2{font-size:21px}.creation-card{flex-basis:66vw}.creations-controls{gap:5px}.creations-arrow{width:32px;height:32px}}</style>
+<style id="kary-category-button-contrast">
+/* Яркая и читаемая кнопка выбора категории */
+.category-picker-btn{
+  background:linear-gradient(135deg,#1769e8 0%,#3156d9 55%,#6848d9 100%)!important;
+  color:#fff!important;
+  border:1px solid #477ff0!important;
+  box-shadow:0 6px 18px rgba(35,91,210,.24)!important;
+  transition:transform .18s ease,box-shadow .18s ease,filter .18s ease;
+}
+.category-picker-btn span{
+  color:#fff!important;
+}
+.category-picker-btn:hover{
+  filter:brightness(1.06);
+  box-shadow:0 8px 22px rgba(35,91,210,.32)!important;
+}
+.category-picker-btn:active{transform:translateY(1px)}
+.category-picker-btn:focus-visible{
+  outline:3px solid rgba(63,139,255,.3)!important;
+  outline-offset:2px;
+}
+</style>
+
+</head>
 <body>
 <header class="topbar"><div class="container top-inner">
 <a class="brand brand-text-only" href="#" aria-label="KARY STORE"><span class="brandmark" aria-hidden="true"><span class="brandmark-letter">K</span><i class="brandmark-dot"></i></span><span class="brand-title">KARY STORE</span></a>
