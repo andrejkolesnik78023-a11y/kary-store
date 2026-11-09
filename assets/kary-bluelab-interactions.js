@@ -17,7 +17,7 @@
   const hero=document.querySelector('.hero');
   if(!hero)return;
   const section=document.createElement('section');section.className='lab-experience';section.id='karyLab';
-  section.innerHTML='<div class="lab-topline"><div><span class="eyebrow">KARY DIGITAL LAB</span><h2>Найди решение под свою задачу</h2><p>Выбирай направление и переходи к подходящим предложениям</p></div><span class="lab-counter" id="labProductCounter">Загружаем каталог</span></div><div class="lab-body"><div class="lab-core" aria-hidden="true"><div class="lab-core-ring"></div><div class="lab-core-orb"></div></div><div class="lab-categories" id="labQuickCategories"><button class="lab-category" type="button" data-lab-all="1"><b>Все предложения</b><small>Посмотреть полный каталог</small></button></div></div>';
+  section.innerHTML='<div class="lab-topline"><div><span class="eyebrow">KARY DIGITAL LAB</span><h2>Выбери направление</h2></div><span class="lab-counter" id="labProductCounter">Загружаем каталог</span></div><div class="lab-categories" id="labQuickCategories"><button class="lab-category" type="button" data-lab-all="1"><b>Все предложения</b><small>Полный каталог</small></button></div>';
   hero.insertAdjacentElement('afterend',section);
   const quick=$('labQuickCategories');
   quick.addEventListener('click',e=>{
