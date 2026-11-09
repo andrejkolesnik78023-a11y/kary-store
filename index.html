@@ -542,9 +542,7 @@ function renderProducts(){
  if(sort==='price-up')list.sort((a,b)=>Number(a.price)-Number(b.price));else if(sort==='price-down')list.sort((a,b)=>Number(b.price)-Number(a.price));else if(sort==='name')list.sort((a,b)=>a.name.localeCompare(b.name,'ru'));
  $('productCount').textContent=list.length+' '+(list.length===1?'товар':list.length>1&&list.length<5?'товара':'товаров');
  if(!list.length){$('products').innerHTML='<div class="empty">Ничего не найдено. Попробуй изменить поиск или фильтры.</div>'}
- else if(activeCategory==='all'&&!query&&!saleOnly&&!favoritesOnly&&!priceLimit){
-  $('products').innerHTML=categories.map(c=>{const group=list.filter(p=>categoryOf(p).slug===c.slug);return group.length?'<section class="category-section"><div class="category-section-head"><h3>'+esc(c.icon||'✦')+' '+esc(c.name)+'</h3><button type="button" data-category="'+esc(c.slug)+'">Все товары →</button></div><div class="product-grid">'+group.map(productCard).join('')+'</div></section>':''}).join('');
- }else{$('products').innerHTML='<div class="product-grid">'+list.map(productCard).join('')+'</div>'}
+ else{$('products').innerHTML='<div class="product-grid">'+list.map(productCard).join('')+'</div>'}
  renderRecentlyViewed();
 }
 function setCategory(slug){activeCategory=slug;saleOnly=false;renderCategories();renderProducts()}
