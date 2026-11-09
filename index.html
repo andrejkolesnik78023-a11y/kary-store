@@ -261,6 +261,46 @@
 .command-copy.copied{border-color:rgba(90,224,170,.4);background:rgba(61,210,154,.12);color:#9af0cb}
 @media(max-width:680px){.useful-commands{margin:18px 0 22px;padding:15px 12px 12px;border-radius:19px}.commands-head{align-items:flex-start;margin-bottom:11px}.commands-head h2{font-size:16px}.commands-head p{font-size:10px;max-width:260px}.commands-free{padding:5px 8px;font-size:8px}.commands-grid{gap:9px}.command-card{flex-basis: min(78vw,245px);padding:12px}.command-card p{min-height:38px}}
 
+
+/* KARY STORE reviews */
+.reviews-section{padding:8px 0 34px}
+.reviews-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:16px}
+.reviews-head h2{margin:4px 0 5px;font-size:25px;letter-spacing:-.8px}
+.reviews-head p{margin:0;color:var(--muted);font-size:11px;line-height:1.6}
+.reviews-summary{display:flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid #dce8fa;background:linear-gradient(135deg,#fff,#f0f6ff);border-radius:14px;white-space:nowrap}
+.reviews-summary strong{font-size:20px;color:#173f78}.reviews-summary span{color:#f5a623;font-size:13px;letter-spacing:1px}.reviews-summary small{display:block;color:var(--muted);font-size:9px}
+.review-form-wrap{margin:0 0 17px}
+.review-gate,.review-own,.review-form{background:#fff;border:1px solid var(--line);border-radius:17px;padding:16px;box-shadow:0 5px 18px #173b7008}
+.review-gate{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.review-gate b,.review-own b{font-size:12px}.review-gate p,.review-own p{margin:5px 0 0;color:var(--muted);font-size:10px;line-height:1.6}
+.review-primary{border:0;border-radius:11px;background:linear-gradient(110deg,#1769e8,#654de8);color:#fff;padding:11px 15px;font-size:11px;font-weight:900;white-space:nowrap}
+.review-form-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}.review-form-top b{font-size:13px}
+.review-stars{display:flex;gap:5px;align-items:center}
+.review-star{border:0;background:#f1f5fb;color:#c2ccda;border-radius:9px;width:35px;height:35px;font-size:21px;line-height:1}
+.review-star.active{background:#fff6df;color:#f2a900}
+.review-text{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--ink);font:inherit;font-size:12px;line-height:1.6;outline:none}
+.review-text:focus{border-color:#8bb7ff;box-shadow:0 0 0 3px #1769e812}
+.review-form-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px}
+.review-hint{font-size:9px;color:#8b98ab;line-height:1.5}
+.review-form-error{margin-top:8px;color:#c13e52;font-size:10px;line-height:1.5}
+.review-own{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.review-own-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.review-edit{border:1px solid #dbe7f8;background:#f4f8ff;color:#2259a5;border-radius:10px;padding:9px 11px;font-size:10px;font-weight:900}
+.review-edited{font-size:9px;color:#8291a8}
+.review-carousel{position:relative}
+.review-track{display:flex;gap:11px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:2px 1px 10px;overscroll-behavior-x:contain}
+.review-track::-webkit-scrollbar{display:none}
+.review-card{flex:0 0 min(330px,82vw);min-width:0;scroll-snap-align:start;background:linear-gradient(145deg,#102747 0%,#173d68 58%,#22548a 100%);border:1px solid #31577e;border-radius:17px;padding:16px;color:#fff;box-shadow:0 9px 22px #10274718}
+.review-card-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.review-author{font-size:11px;font-weight:900;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.review-date{font-size:9px;color:#b5c9df;white-space:nowrap}
+.review-card-stars{margin:10px 0 8px;color:#ffc34d;letter-spacing:2px;font-size:13px}
+.review-card-body{font-size:11px;line-height:1.75;color:#e2edf9;overflow-wrap:anywhere;white-space:pre-wrap;min-height:58px}
+.review-track-empty{width:100%;padding:24px 16px;border:1px dashed #cbd8eb;border-radius:15px;text-align:center;color:var(--muted);font-size:11px;background:#fff}
+.review-carousel-controls{display:flex;justify-content:center;align-items:center;gap:9px;padding-top:2px}
+.review-carousel-controls button{height:30px;min-width:32px;border:1px solid var(--line);background:#fff;color:#60718c;border-radius:9px;font-weight:900}
+.review-carousel-controls button:disabled{opacity:.35}
+@media(max-width:560px){.reviews-head h2{font-size:21px}.reviews-summary{padding:7px 9px;gap:6px}.reviews-summary strong{font-size:17px}.review-gate{align-items:flex-start;flex-direction:column}.review-primary{width:100%}.review-form{padding:13px}.review-star{width:33px;height:33px}.review-form-foot{align-items:flex-start;flex-direction:column}.review-form-foot .review-primary{width:100%}.review-own{align-items:flex-start;flex-direction:column}.review-own-actions{width:100%;justify-content:space-between}}
 </style>
 <style>
 .publisher-page{display:none;min-height:100vh;padding:34px 16px 60px;background:radial-gradient(ellipse at 15% 0%,#6d39b833,transparent 35%),radial-gradient(ellipse at 100% 80%,#1769e833,transparent 35%),#080f20;color:#f3f6ff}
@@ -345,7 +385,12 @@ body.publisher-mode main,body.publisher-mode .bottom-nav,body.publisher-mode #ca
 <div class="search-row"><div class="search-wrap"><span class="search-icon" aria-hidden="true"></span><input class="search" id="search" type="search" placeholder="Найти товар или услугу…"></div><select class="sort" id="sort"><option value="popular">Сначала популярные</option><option value="price-up">Сначала дешевле</option><option value="price-down">Сначала дороже</option><option value="name">По названию</option></select></div>
 <div class="categories" id="categories"><button class="cat active" data-category="all">Все товары</button></div>
 <div class="catalog-tools"><label class="filter-toggle"><input id="discountFilter" type="checkbox"><span>Только со скидкой</span></label><label class="filter-toggle"><input id="favoriteFilter" type="checkbox"><span>Избранное</span></label><label class="price-limit">Цена до <input id="priceLimit" type="number" min="0" inputmode="numeric" placeholder="Любая"> ₽</label><button class="filter-reset" id="resetFilters" type="button">Сбросить</button></div>
-<div class="product-grid" id="products"><div class="empty">Загружаем каталог…</div></div><div class="recent-block" id="recentBlock" hidden><div class="recent-heading"><div><span class="eyebrow">ТВОЯ ИСТОРИЯ</span><h3>Недавно смотрели</h3></div><button type="button" id="clearRecent">Очистить</button></div><div class="recent-grid" id="recentProducts"></div></div></section>
+<div class="product-grid" id="products"><div class="empty">Загружаем каталог…</div></div><div class="recent-block" id="recentBlock" hidden><div class="recent-heading"><div><span class="eyebrow">ТВОЯ ИСТОРИЯ</span><h3>Недавно смотрели</h3></div><button type="button" id="clearRecent">Очистить</button></div><div class="recent-grid" id="recentProducts"></div></div>
+<section class="reviews-section" id="reviews" aria-label="Отзывы покупателей">
+ <div class="reviews-head"><div><span class="eyebrow">МНЕНИЕ ПОКУПАТЕЛЕЙ</span><h2>Отзывы о KARY STORE</h2><p>Мнение реальных пользователей с аккаунтом на сайте</p></div><div class="reviews-summary"><strong id="reviewsAverage">—</strong><span>★★★★★</span><small id="reviewsCount">0 отзывов</small></div></div>
+ <div class="review-form-wrap" id="reviewFormWrap"><div class="review-gate"><div><b>Поделись впечатлением о магазине</b><p>Войти в профиль можно за пару секунд — отзыв доступен только зарегистрированным пользователям.</p></div><button class="review-primary" id="reviewLogin" type="button">Войти и оставить отзыв</button></div></div>
+ <div class="review-carousel"><div class="review-track" id="reviewTrack"><div class="review-track-empty">Загружаем отзывы…</div></div><div class="review-carousel-controls" id="reviewControls" hidden><button type="button" id="reviewPrev" aria-label="Предыдущие отзывы">‹</button><button type="button" id="reviewNext" aria-label="Следующие отзывы">›</button></div></div>
+</section></section>
 <section class="benefits" aria-label="Преимущества магазина"><div class="benefits-viewport" id="benefitsViewport"><div class="benefits-track" id="benefitsTrack"><article class="benefit"><span class="benefit-icon">⚡</span><div><b>Быстрый заказ</b><p>Собери корзину и отправь заказ продавцу напрямую.</p></div></article><article class="benefit"><span class="benefit-icon">🤝</span><div><b>На связи с продавцом</b><p>Обсуди детали, сроки и результат до начала работы.</p></div></article><article class="benefit"><span class="benefit-icon">🔒</span><div><b>Понятные условия</b><p>Перед оплатой уточняем состав заказа и все детали.</p></div></article></div></div><div class="benefits-dots" id="benefitsDots" aria-label="Переключить карточку"><button class="benefit-dot active" aria-label="Карточка 1" data-benefit="0"></button><button class="benefit-dot" aria-label="Карточка 2" data-benefit="1"></button><button class="benefit-dot" aria-label="Карточка 3" data-benefit="2"></button></div></section>
 <section class="sale-section" id="sale1111" aria-label="Распродажа 11.11">
  <div class="sale-head"><div><div class="eyebrow">SPECIAL SALE • 11.11</div><h2>Скидки 11.11</h2><p>Выбирай выгодные предложения KARY STORE</p></div><span class="sale-date">11.11</span></div>
@@ -566,6 +611,68 @@ const AUTH_URL=SUPABASE_URL+'/functions/v1/kary-customer-auth';
 let customerSession=readStore('kary-customer-session',null),customerUser=null,profileMode='register';
 const countryPrefixes=[['Азербайджан','+994'],['Армения','+374'],['Беларусь','+375'],['Казахстан','+7'],['Кыргызстан','+996'],['Молдова','+373'],['Россия','+7'],['Таджикистан','+992'],['Туркменистан','+993'],['Узбекистан','+998']];
 async function authRequest(payload){const r=await fetch(AUTH_URL,{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY},body:JSON.stringify(payload)});const data=await r.json().catch(()=>({}));if(!r.ok||!data.ok)throw new Error(data.error||'Не удалось выполнить действие');return data}
+
+let reviewRating=5,myReview=null,reviewEditing=false,reviewsCache=[];
+async function reviewRequest(payload){
+ const response=await fetch(AUTH_URL,{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY},body:JSON.stringify(payload)});
+ const data=await response.json().catch(()=>({}));
+ if(!response.ok||!data.ok)throw new Error(data.error||"Не удалось выполнить действие");
+ return data;
+}
+function reviewStars(value){return "★".repeat(Number(value)||0)+"☆".repeat(5-(Number(value)||0))}
+function reviewDate(value){return new Date(value).toLocaleDateString("ru-RU",{day:"2-digit",month:"long",year:"numeric"})}
+function reviewFormMarkup(title,body,rating,editing){
+ return '<form class="review-form" id="reviewForm"><div class="review-form-top"><b>'+title+'</b><div class="review-stars" aria-label="Оценка">'+[1,2,3,4,5].map(n=>'<button class="review-star '+(n<=rating?'active':'')+'" type="button" data-review-rating="'+n+'" aria-label="'+n+' из 5 звёзд">★</button>').join('')+'</div></div><textarea class="review-text" id="reviewBody" maxlength="600" minlength="10" placeholder="Расскажи о своём опыте покупок в KARY STORE…" required>'+esc(body||"")+'</textarea><div class="review-form-foot"><span class="review-hint">От 10 до 600 символов. Без мата и оскорблений.</span><button class="review-primary" type="submit">'+(editing?'Сохранить единственное изменение':'Опубликовать отзыв')+'</button></div><div class="review-form-error" id="reviewFormError" role="status"></div></form>';
+}
+function renderReviewForm(){
+ const wrap=$("reviewFormWrap");if(!wrap)return;
+ if(!customerSession){
+  wrap.innerHTML='<div class="review-gate"><div><b>Поделись впечатлением о магазине</b><p>Войти в профиль можно за пару секунд — отзыв доступен только зарегистрированным пользователям.</p></div><button class="review-primary" id="reviewLogin" type="button">Войти и оставить отзыв</button></div>';
+  $("reviewLogin").onclick=()=>openProfile();return;
+ }
+ if(myReview&&!reviewEditing){
+  wrap.innerHTML='<div class="review-own"><div><b>Твой отзыв уже опубликован</b><p>'+esc(myReview.body)+'</p><div class="review-card-stars">'+reviewStars(myReview.rating)+'</div></div><div class="review-own-actions">'+(Number(myReview.edit_count)===0?'<button class="review-edit" id="reviewEdit" type="button">✎ Изменить один раз</button>':'<span class="review-edited">Изменён · повторное редактирование недоступно</span>')+'</div></div>';
+  const edit=$("reviewEdit");if(edit)edit.onclick=()=>{reviewEditing=true;reviewRating=Number(myReview.rating)||5;renderReviewForm()};return;
+ }
+ const editing=!!myReview;
+ if(!editing)reviewRating=5;
+ wrap.innerHTML=reviewFormMarkup(editing?'Редактирование отзыва — последнее изменение':'Оставить отзыв',editing?myReview.body:"",reviewRating,editing);
+ document.querySelectorAll("[data-review-rating]").forEach(button=>button.onclick=()=>{reviewRating=Number(button.dataset.reviewRating);document.querySelectorAll("[data-review-rating]").forEach(x=>x.classList.toggle("active",Number(x.dataset.reviewRating)<=reviewRating))});
+ $("reviewForm").onsubmit=async event=>{
+  event.preventDefault();const body=$("reviewBody").value.trim(),button=$("reviewForm").querySelector('button[type="submit"]'),error=$("reviewFormError");
+  error.textContent="";
+  if(body.length<10||body.length>600){error.textContent="Отзыв должен содержать от 10 до 600 символов.";return}
+  button.disabled=true;button.textContent="Публикуем…";
+  try{
+   const result=await reviewRequest({action:editing?"review_update":"review_create",token:customerSession,rating:reviewRating,body});
+   myReview=result.review;reviewEditing=false;toast(editing?"Отзыв изменён. Это было последнее редактирование.":"Спасибо! Отзыв опубликован ❤️");await loadReviews();
+  }catch(err){error.textContent=err.message||"Не удалось сохранить отзыв";button.disabled=false;button.textContent=editing?"Сохранить единственное изменение":"Опубликовать отзыв"}
+ };
+}
+function renderReviewCards(){
+ const track=$("reviewTrack"),controls=$("reviewControls");
+ if(!reviewsCache.length){track.innerHTML='<div class="review-track-empty">Пока нет отзывов. Стань первым, кто поделится впечатлением о KARY STORE ✨</div>';controls.hidden=true;return}
+ track.innerHTML=reviewsCache.map(r=>'<article class="review-card"><div class="review-card-top"><span class="review-author">'+esc(r.display_name||"Покупатель")+'</span><span class="review-date">'+reviewDate(r.created_at)+'</span></div><div class="review-card-stars">'+reviewStars(r.rating)+'</div><div class="review-card-body">'+esc(r.body)+'</div></article>').join('');
+ controls.hidden=reviewsCache.length<2;
+}
+async function loadReviews(){
+ try{
+  const tasks=[reviewRequest({action:"reviews_list"})];
+  if(customerSession)tasks.push(reviewRequest({action:"review_me",token:customerSession}));
+  const results=await Promise.all(tasks),list=results[0];
+  reviewsCache=list.reviews||[];
+  $("reviewsAverage").textContent=list.count?Number(list.average).toFixed(1).replace(".",","):"—";
+  $("reviewsCount").textContent=(list.count||0)+" "+((list.count||0)===1?"отзыв":(list.count||0)>=2&&(list.count||0)<=4?"отзыва":"отзывов");
+  if(customerSession)myReview=results[1].review||null;else myReview=null;
+  reviewEditing=false;renderReviewForm();renderReviewCards();
+ }catch(error){
+  if(customerSession&&/сессия|войди|войти/i.test(error.message||"")){customerSession=null;localStorage.removeItem("kary-customer-session");myReview=null;renderReviewForm()}
+  $("reviewTrack").innerHTML='<div class="review-track-empty">Не удалось загрузить отзывы. Обнови страницу чуть позже.</div>';
+ }
+}
+$("reviewPrev").onclick=()=>{$("reviewTrack").scrollBy({left:-Math.max(280,$("reviewTrack").clientWidth*.8),behavior:"smooth"})};
+$("reviewNext").onclick=()=>{$("reviewTrack").scrollBy({left:Math.max(280,$("reviewTrack").clientWidth*.8),behavior:"smooth"})};
+
 function profileForm(){
  const countries=countryPrefixes.map((c,i)=>'<option value="'+c[1]+'" '+(i===6?'selected':'')+'>'+c[0]+' ('+c[1]+')</option>').join('');
  const refCode=(new URLSearchParams(location.search).get('ref')||'').toUpperCase();
@@ -708,6 +815,7 @@ async function initializePublisher(){
 
 if(PUBLISHER_MODE)initializePublisher();
 loadCatalog().then(()=>{const productId=new URLSearchParams(location.search).get('product');if(productId)openProduct(productId)});
+loadReviews();
 </script>
 
 
