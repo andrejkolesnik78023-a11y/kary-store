@@ -472,7 +472,7 @@ function renderCart(){
 function changeQty(id,delta){const item=cart.find(x=>x.id===Number(id));if(!item)return;item.qty+=delta;if(item.qty<=0)cart=cart.filter(x=>x.id!==Number(id));saveStore();renderCart()}
 function openOverlay(id){$(id).classList.add('open');$(id).setAttribute('aria-hidden','false');document.body.style.overflow='hidden'}
 function closeOverlay(id){$(id).classList.remove('open');$(id).setAttribute('aria-hidden','true');if(!document.querySelector('.overlay.open,.modal.open'))document.body.style.overflow=''}
-function openProduct(id){const p=products.find(x=>x.id===Number(id));if(!p)return;recentViewed=[p.id,...recentViewed.filter(x=>Number(x)!==p.id)].slice(0,8);saveStore();renderRecentlyViewed();const cat=categoryOf(p),sale=p.original_price&&Number(p.original_price)>Number(p.price),image=p.image_url?'<img class="detail-image" src="'+esc(p.image_url)+'" alt="'+esc(p.name)+'">':'<div class="detail-placeholder">KARY STORE</div>';$('modalContent').innerHTML=image+'<div class="eyebrow">'+esc(cat.icon||'✦')+' '+esc(cat.name)+'</div><h2>'+esc(p.name)+'</h2><p class="detail-description">'+esc(p.description||'Подробности уточняйте у продавца.')+'</p><div class="detail-meta"><span>🛒 '+salesLabel(p.sales_count)+'</span><span>Цифровой товар / услуга</span></div><div class="modal-price">'+money(p.price)+(sale?' <small>'+money(p.original_price)+'</small>':'')+'</div><div class="modal-actions"><button class="buy-btn" id="modalAdd">Добавить в корзину</button><button class="icon-btn" id="modalFav" aria-label="В избранное">'+(favorites.has(p.id)?'♥':'♡')+'</button></div>';$('modalAdd').onclick=()=>{addToCart(p.id);closeOverlay('productModal')};$('modalFav').onclick=()=>{toggleFavorite(p.id);$('modalFav').textContent=favorites.has(p.id)?'♥':'♡'};openOverlay('productModal')}
+function openProduct(id){const p=products.find(x=>x.id===Number(id));if(!p)return;recentViewed=[p.id,...recentViewed.filter(x=>Number(x)!==p.id)].slice(0,8);saveStore();renderRecentlyViewed();const cat=categoryOf(p),sale=p.original_price&&Number(p.original_price)>Number(p.price),image=p.image_url?'<img class="detail-image" src="'+esc(p.image_url)+'" alt="'+esc(p.name)+'">':'<div class="detail-placeholder">KARY STORE</div>';$('modalContent').innerHTML=image+'<div class="eyebrow">'+esc(cat.icon||'✦')+' '+esc(cat.name)+'</div><h2>'+esc(p.name)+'</h2><p class="detail-description">'+esc(p.description||'Подробности уточняйте у продавца.')+'</p><div class="detail-meta"><span>🛒 '+salesLabel(p.sales_count)+'</span><span>Цифровой товар / услуга</span></div><div class="modal-price">'+money(p.price)+(sale?' <small>'+money(p.original_price)+'</small>':'')+'</div><div class="modal-actions"><button class="buy-btn" id="modalAdd">Добавить в корзину</button><button class="icon-btn" id="modalFav" aria-label="В избранное">'+(favorites.has(p.id)?'♥':'♡')+'</button><button class="icon-btn" id="modalCopyLink" aria-label="Скопировать ссылку на товар" title="Скопировать ссылку">🔗</button></div>';$('modalAdd').onclick=()=>{addToCart(p.id);closeOverlay('productModal')};$('modalFav').onclick=()=>{toggleFavorite(p.id);$('modalFav').textContent=favorites.has(p.id)?'♥':'♡'};$('modalCopyLink').onclick=async()=>{const url=new URL(location.href);url.searchParams.set('product',p.id);try{await navigator.clipboard.writeText(url.href);toast('Ссылка на товар скопирована')}catch{const field=document.createElement('textarea');field.value=url.href;field.style.position='fixed';field.style.opacity='0';document.body.appendChild(field);field.select();const ok=document.execCommand('copy');field.remove();toast(ok?'Ссылка на товар скопирована':'Не удалось скопировать ссылку')}};openOverlay('productModal')}
 let checkoutAttemptKey=null;
 async function sendOrder(){
  if(!cart.length){toast('Корзина пуста');return}
@@ -704,7 +704,7 @@ async function initializePublisher(){
 }
 
 if(PUBLISHER_MODE)initializePublisher();
-loadCatalog();
+loadCatalog().then(()=>{const productId=new URLSearchParams(location.search).get('product');if(productId)openProduct(productId)});
 </script>
 
 
@@ -728,5 +728,12 @@ document.addEventListener('click',async function(event){
 });
 </script>
 
+
+<style>
+.product-media img,.cart-thumb img,.detail-image{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;-webkit-user-drag:none}
+</style>
+<script>
+(function(){const isProductImage=t=>t instanceof Element&&!!t.closest('.product-media img,.cart-thumb img,.detail-image');document.addEventListener('contextmenu',e=>{if(isProductImage(e.target))e.preventDefault()},true);document.addEventListener('dragstart',e=>{if(isProductImage(e.target))e.preventDefault()},true);document.addEventListener('selectstart',e=>{if(isProductImage(e.target))e.preventDefault()},true)})();
+</script>
 </body>
 </html>
