@@ -653,7 +653,7 @@ function renderReviewForm(){
   button.disabled=true;button.textContent="Публикуем…";
   try{
    const result=await reviewRequest({action:editing?"review_update":"review_create",token:customerSession,rating:reviewRating,body});
-   myReview=result.review;reviewEditing=false;toast(editing?"Отзыв изменён. Это было последнее редактирование.":"Спасибо! Отзыв опубликован ❤️");await loadReviews();
+   myReview=result.review;reviewEditing=false;if(!editing&&result.reward?.credited){toast("🎉 Спасибо за отзыв! +100 ₽ зачислено на баланс");}else{toast(editing?"Отзыв изменён. Это было последнее редактирование.":"Спасибо! Отзыв опубликован ❤️");}await loadReviews();
   }catch(err){error.textContent=err.message||"Не удалось сохранить отзыв";button.disabled=false;button.textContent=editing?"Сохранить единственное изменение":"Опубликовать отзыв"}
  };
 }
