@@ -248,27 +248,28 @@
 
 
 
-/* KARY STORE — полезные AI-команды */
-.useful-commands{position:relative;isolation:isolate;overflow:hidden;margin:30px 0 34px;padding:clamp(22px,3.5vw,38px);border:1px solid rgba(133,111,255,.27);border-radius:28px;background:radial-gradient(ellipse at 8% 0%,rgba(71,93,255,.19),transparent 42%),radial-gradient(ellipse at 100% 100%,rgba(160,76,255,.16),transparent 45%),linear-gradient(135deg,#10152d 0%,#15132d 52%,#101a35 100%);box-shadow:0 18px 55px rgba(3,6,25,.24)}
-.useful-commands:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(115deg,transparent 25%,rgba(255,255,255,.025) 48%,transparent 70%)}
-.commands-head{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;margin-bottom:23px}
-.commands-kicker{display:inline-flex;align-items:center;gap:8px;margin-bottom:10px;color:#9d9cff;font-size:10px;font-weight:900;letter-spacing:1.8px;text-transform:uppercase}
-.commands-kicker:before{content:"";width:7px;height:7px;border-radius:50%;background:#8d83ff;box-shadow:0 0 12px #8d83ff}
-.commands-head h2{margin:0;color:#fff;font-size:clamp(21px,3vw,29px);line-height:1.15;font-weight:900;letter-spacing:-.5px}
-.commands-head p{max-width:560px;margin:9px 0 0;color:#aeb8d6;font-size:13px;line-height:1.6}
-.commands-free{flex:none;padding:8px 12px;border:1px solid rgba(105,235,190,.25);border-radius:999px;background:rgba(64,220,166,.09);color:#8df0c8;font-size:10px;font-weight:900;letter-spacing:.8px}
-.commands-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
-.command-card{min-width:0;padding:19px;border:1px solid rgba(177,183,255,.13);border-radius:19px;background:rgba(255,255,255,.045);transition:transform .2s ease,border-color .2s ease,background .2s ease}
-.command-card:hover{transform:translateY(-3px);border-color:rgba(157,145,255,.48);background:rgba(255,255,255,.075)}
-.command-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:17px}
-.command-icon{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,rgba(101,117,255,.24),rgba(183,91,255,.2));color:#c6c4ff;font-size:17px}
-.command-tag{color:#7f8bad;font-size:9px;font-weight:800;letter-spacing:1px}
-.command-name{display:inline-block;margin-bottom:9px;color:#d5caff;font-size:17px;font-weight:950;letter-spacing:.2px}
-.command-card p{min-height:57px;margin:0;color:#b5bfd9;font-size:12px;line-height:1.6}
-.command-copy{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;margin-top:17px;padding:11px 13px;border:1px solid rgba(151,139,255,.28);border-radius:11px;background:rgba(117,99,255,.13);color:#e5e1ff;font-size:11px;font-weight:850;cursor:pointer;transition:background .2s ease,border-color .2s ease}
-.command-copy:hover{background:rgba(117,99,255,.24);border-color:rgba(173,160,255,.6)}
+/* KARY STORE — компактная горизонтальная карусель AI-команд */
+.useful-commands{position:relative;isolation:isolate;overflow:hidden;margin:22px 0 26px;padding:19px 20px 17px;border:1px solid rgba(75,145,255,.28);border-radius:23px;background:radial-gradient(ellipse at 12% 0%,rgba(25,112,255,.22),transparent 48%),linear-gradient(120deg,#0d1834 0%,#101d40 55%,#111735 100%);box-shadow:0 12px 35px rgba(4,18,55,.22)}
+.useful-commands:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(110deg,transparent 20%,rgba(77,153,255,.07) 50%,transparent 78%)}
+.commands-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+.commands-kicker{display:inline-flex;align-items:center;gap:7px;margin-bottom:5px;color:#83baff;font-size:9px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase}
+.commands-kicker:before{content:"";width:6px;height:6px;border-radius:50%;background:#58a5ff;box-shadow:0 0 10px #58a5ff}
+.commands-head h2{margin:0;color:#fff;font-size:clamp(16px,2.3vw,21px);line-height:1.2;font-weight:900;letter-spacing:-.3px}
+.commands-head p{margin:5px 0 0;color:#aabbdc;font-size:11px;line-height:1.45}
+.commands-free{flex:none;padding:6px 10px;border:1px solid rgba(95,225,184,.27);border-radius:999px;background:rgba(64,220,166,.09);color:#8df0c8;font-size:9px;font-weight:900;letter-spacing:.6px}
+.commands-grid{display:flex;gap:11px;overflow-x:auto;overflow-y:hidden;padding:2px 2px 10px;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:rgba(91,157,255,.55) transparent;-webkit-overflow-scrolling:touch}
+.commands-grid::-webkit-scrollbar{height:5px}.commands-grid::-webkit-scrollbar-track{background:rgba(255,255,255,.04);border-radius:9px}.commands-grid::-webkit-scrollbar-thumb{background:linear-gradient(90deg,#397cff,#7a70ff);border-radius:9px}
+.command-card{display:flex;flex:0 0 clamp(220px,29%,275px);flex-direction:column;min-width:0;padding:13px 14px 12px;border:1px solid rgba(81,157,255,.34);border-radius:16px;background:linear-gradient(145deg,rgba(32,104,220,.25),rgba(79,73,195,.18) 60%,rgba(21,54,111,.28));box-shadow:inset 0 0 22px rgba(54,131,255,.08),0 5px 18px rgba(2,10,35,.15);scroll-snap-align:start;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.command-card:hover{transform:translateY(-2px);border-color:rgba(117,184,255,.72);box-shadow:inset 0 0 25px rgba(54,131,255,.13),0 7px 22px rgba(22,90,210,.17)}
+.command-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px}
+.command-icon{display:grid;place-items:center;width:27px;height:27px;border-radius:9px;background:linear-gradient(135deg,rgba(53,139,255,.35),rgba(119,103,255,.28));color:#c9e3ff;font-size:14px}
+.command-tag{color:#8faedc;font-size:8px;font-weight:800;letter-spacing:.8px}
+.command-name{display:inline-block;margin-bottom:5px;color:#d4e7ff;font-size:15px;font-weight:950;letter-spacing:.2px}
+.command-card p{flex:1;min-height:42px;margin:0;color:#c0cde3;font-size:10px;line-height:1.45}
+.command-copy{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;margin-top:10px;padding:8px 10px;border:1px solid rgba(103,168,255,.35);border-radius:9px;background:rgba(53,124,239,.2);color:#e4f1ff;font-size:10px;font-weight:850;cursor:pointer;transition:background .2s ease,border-color .2s ease}
+.command-copy:hover{background:rgba(53,124,239,.34);border-color:rgba(153,200,255,.7)}
 .command-copy.copied{border-color:rgba(90,224,170,.4);background:rgba(61,210,154,.12);color:#9af0cb}
-@media(max-width:680px){.useful-commands{margin:22px 0 26px;padding:20px 15px;border-radius:22px}.commands-head{align-items:flex-start;flex-direction:column;gap:12px}.commands-grid{grid-template-columns:1fr;gap:10px}.command-card{padding:16px}.command-card p{min-height:0}.command-top{margin-bottom:12px}}
+@media(max-width:680px){.useful-commands{margin:18px 0 22px;padding:15px 12px 12px;border-radius:19px}.commands-head{align-items:flex-start;margin-bottom:11px}.commands-head h2{font-size:16px}.commands-head p{font-size:10px;max-width:260px}.commands-free{padding:5px 8px;font-size:8px}.commands-grid{gap:9px}.command-card{flex-basis: min(78vw,245px);padding:12px}.command-card p{min-height:38px}}
 
 </style>
 <style>
@@ -322,8 +323,8 @@ body.publisher-mode main,body.publisher-mode .bottom-nav,body.publisher-mode #ca
   <div class="commands-head">
     <div>
       <span class="commands-kicker">KARY AI TOOLS</span>
-      <h2>Попробуй бесплатные команды для фото своих товаров</h2>
-      <p>Скопируй команду, отправь её вместе с фотографией товара в поддерживаемый ИИ-сервис и получи новое оформление.</p>
+      <h2>Бесплатные AI-команды для фото товаров</h2>
+      <p>Листай команды и копируй нужную в один клик.</p>
     </div>
     <span class="commands-free">БЕСПЛАТНО</span>
   </div>
