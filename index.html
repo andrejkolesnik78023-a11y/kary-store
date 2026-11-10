@@ -1014,5 +1014,29 @@ document.addEventListener('click',async function(event){
 }
 </style>
 
+
+<style id="kary-product-image-fix">
+/* Product photos: preserve original proportions and show the complete image */
+.product-media{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  overflow:hidden;
+  background:radial-gradient(ellipse at 50% 35%,rgba(48,117,190,.16),transparent 72%),#071426!important;
+}
+.product-media img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain!important;
+  object-position:center!important;
+  padding:8px;
+}
+@media(max-width:760px){
+  .product-media img{padding:6px}
+}
+</style>
 </body>
 </html>
