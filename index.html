@@ -451,8 +451,10 @@ function renderRecentlyViewed(){const block=$('recentBlock'),target=$('recentPro
 function renderProducts(){const query=$('search').value.trim().toLowerCase();let list=products.filter(p=>(activeCategory==='all'||categoryOf(p).slug===activeCategory)&&(!query||(p.name+' '+(p.description||'')).toLowerCase().includes(query))&&(!saleOnly||(p.original_price&&Number(p.original_price)>Number(p.price)))&&(!favoritesOnly||favorites.has(p.id))&&(!priceLimit||Number(p.price)<=Number(priceLimit)));const sort=$('sort').value;if(sort==='price-up')list.sort((a,b)=>Number(a.price)-Number(b.price));else if(sort==='price-down')list.sort((a,b)=>Number(b.price)-Number(a.price));else if(sort==='name')list.sort((a,b)=>a.name.localeCompare(b.name,'ru'));$('productCount').textContent=list.length+' '+(list.length===1?'товар':list.length>1&&list.length<5?'товара':'товаров');$('products').innerHTML=list.length?list.map(productCard).join(''):'<div class="empty">Ничего не найдено. Попробуй изменить поиск или фильтры.</div>';renderRecentlyViewed()}
 function setCategory(slug){activeCategory=slug;saleOnly=false;renderCategories();renderProducts()}
 function showDiscounts(){activeCategory='all';saleOnly=true;favoritesOnly=false;$('search').value='';renderCategories();renderProducts();document.querySelector('#catalog').scrollIntoView({behavior:'smooth'})}
-$('saleShowDiscounts').onclick=showDiscounts;
-$('saleShowGpt').onclick=()=>{setCategory('gpt');document.querySelector('#catalog').scrollIntoView({behavior:'smooth'})};
+const saleDiscountButton=$('saleShowDiscounts');
+if(saleDiscountButton)saleDiscountButton.onclick=showDiscounts;
+const saleGptButton=$('saleShowGpt');
+if(saleGptButton)saleGptButton.onclick=()=>{setCategory('gpt');document.querySelector('#catalog').scrollIntoView({behavior:'smooth'})};
 function addToCart(id){const p=products.find(x=>x.id===Number(id));if(!p)return;const item=cart.find(x=>x.id===p.id);if(item)item.qty++;else cart.push({id:p.id,qty:1});saveStore();renderCart();toast('Добавлено в корзину');}
 function toggleFavorite(id){id=Number(id);if(favorites.has(id)){favorites.delete(id);toast('Убрано из избранного')}else{favorites.add(id);toast('Добавлено в избранное')}saveStore();renderProducts()}
 function renderCart(){
