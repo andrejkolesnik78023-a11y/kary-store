@@ -271,6 +271,20 @@
 #products.product-grid .product-media{width:100%;min-width:0}
 #products.product-grid .product-info{min-width:0}
 
+
+/* Закреплённая шапка и ненавязчивые элементы навигации */
+.topbar{position:fixed!important;top:0;left:0;right:0;width:100%;z-index:35}
+body{padding-top:72px}
+@media(max-width:640px){body{padding-top:62px}}
+.back-to-top{position:fixed;right:18px;bottom:104px;z-index:29;width:38px;height:38px;border:1px solid #dce5f0;border-radius:50%;background:rgba(255,255,255,.88);color:#71819a;box-shadow:0 4px 14px rgba(20,45,80,.10);font-size:18px;line-height:1;display:grid;place-items:center;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(7px);transition:opacity .22s,transform .22s,visibility .22s;backdrop-filter:blur(8px)}
+.back-to-top.visible{opacity:.82;visibility:visible;pointer-events:auto;transform:translateY(0)}
+.back-to-top:active{opacity:1}
+@media(min-width:641px){.back-to-top{bottom:24px;right:24px}}
+@keyframes cartSoftBlink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.58;transform:scale(1.10)}}
+#cartTop.cart-has-items{animation:cartSoftBlink 1.25s ease-in-out infinite;border-color:#b9d4fb}
+#navCart.cart-has-items .ico{animation:cartSoftBlink 1.25s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){#cartTop.cart-has-items,#navCart.cart-has-items .ico{animation:none}}
+
 </style>
 <style>
 .publisher-page{display:none;min-height:100vh;padding:34px 16px 60px;background:radial-gradient(ellipse at 15% 0%,#6d39b833,transparent 35%),radial-gradient(ellipse at 100% 80%,#1769e833,transparent 35%),#080f20;color:#f3f6ff}
@@ -373,7 +387,7 @@ body.publisher-mode main,body.publisher-mode .bottom-nav,body.publisher-mode #ca
 <div class="overlay" id="cartOverlay" aria-hidden="true"><aside class="drawer" role="dialog" aria-modal="true" aria-label="Корзина"><div class="drawer-head"><h2>Корзина</h2><button class="close" id="cartClose" aria-label="Закрыть">×</button></div><div class="cart-list" id="cartList"></div><div class="cart-total"><div class="total-line"><span>Итого</span><strong id="cartTotal">0 ₽</strong></div><button class="checkout-btn" id="checkoutOpen">Перейти к оформлению</button><p class="drawer-note">Заявка придёт в Telegram-бот магазина. После проверки продавец пришлёт реквизиты для оплаты.</p></div></aside></div>
 <div class="modal" id="productModal"><div class="modal-card"><button class="modal-close" data-close="productModal">×</button><div id="modalContent"></div></div></div>
 <div class="modal" id="checkoutModal"><div class="modal-card"><button class="modal-close" data-close="checkoutModal">×</button><div class="eyebrow">Оформление заказа</div><h2>Куда отправить детали?</h2><p>Заполни контакты и выбери способ оплаты: балансом сайта или обычной заявкой.</p><div class="checkout-payment" style="display:grid;gap:8px;margin:14px 0"><label style="display:flex;gap:10px;align-items:center;padding:12px;border:1px solid #dce5f0;border-radius:12px;font-size:12px;font-weight:800"><input type="radio" name="checkoutPayment" value="balance"> 💳 Оплатить балансом сайта</label><label style="display:flex;gap:10px;align-items:center;padding:12px;border:1px solid #dce5f0;border-radius:12px;font-size:12px;font-weight:800"><input type="radio" name="checkoutPayment" value="referral_balance"> 🤝 Оплатить реферальным счётом (2:1)</label><label style="display:flex;gap:10px;align-items:center;padding:12px;border:1px solid #dce5f0;border-radius:12px;font-size:12px;font-weight:800"><input type="radio" name="checkoutPayment" value="request" checked> 📨 Оформить заявку на оплату</label></div><div id="balanceError" hidden style="padding:12px;border-radius:12px;background:#fff0f0;color:#a32d36;font-size:12px;line-height:1.5;margin:10px 0"><b>Недостаточно средств</b><div style="margin-top:5px">Пополните баланс или оформите обычную заявку на оплату.</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button type="button" id="topupFromCheckout" style="border:0;border-radius:9px;padding:10px 12px;background:#163b65;color:white;font-weight:800">Пополнить баланс</button><button type="button" id="requestFromCheckout" style="border:1px solid #c7d5e5;border-radius:9px;padding:10px 12px;background:white;color:#173b62;font-weight:800">Оформить заявку</button></div></div><div class="checkout-fields"><label>Как к тебе обращаться<input id="buyerName" placeholder="Имя"></label><label>Контакт для связи<input id="buyerContact" placeholder="@telegram или номер телефона"></label><label>Комментарий к заказу<textarea id="buyerComment" placeholder="Пожелания, сроки, дополнительные детали"></textarea></label></div><button class="checkout-btn" id="sendOrder">Отправить заявку на оплату ↗</button></div></div>
-<div class="modal" id="supportModal"><div class="modal-card"><button class="modal-close" data-close="supportModal">×</button><div class="eyebrow">KARY STORE • HELP DESK</div><h2>Поддержка</h2><p>Напиши нам — ответ появится здесь. Когда придёт новое сообщение, на кнопке поддержки загорится красная точка.</p><div class="support-messages" id="supportMessages"><div class="empty">Подключаем поддержку…</div></div><div class="support-compose"><textarea id="supportInput" maxlength="3000" placeholder="Напиши сообщение…"></textarea><button id="supportSend">Отправить</button></div></div></div><div class="modal" id="profileModal"><div class="modal-card"><button class="modal-close" data-close="profileModal">×</button><div class="eyebrow">KARY STORE • ACCOUNT</div><h2>Личный профиль</h2><div id="profileContent"></div></div></div><div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="modal" id="supportModal"><div class="modal-card"><button class="modal-close" data-close="supportModal">×</button><div class="eyebrow">KARY STORE • HELP DESK</div><h2>Поддержка</h2><p>Напиши нам — ответ появится здесь. Когда придёт новое сообщение, на кнопке поддержки загорится красная точка.</p><div class="support-messages" id="supportMessages"><div class="empty">Подключаем поддержку…</div></div><div class="support-compose"><textarea id="supportInput" maxlength="3000" placeholder="Напиши сообщение…"></textarea><button id="supportSend">Отправить</button></div></div></div><div class="modal" id="profileModal"><div class="modal-card"><button class="modal-close" data-close="profileModal">×</button><div class="eyebrow">KARY STORE • ACCOUNT</div><h2>Личный профиль</h2><div id="profileContent"></div></div></div><button class="back-to-top" id="backToTop" type="button" aria-label="Наверх" title="Наверх">↑</button><div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 const SUPABASE_URL='https://krdhfzbinbxyketfcrdg.supabase.co';
 const SUPABASE_KEY='sb_publishable_nDSB-nLt5u2FVp0GH8MffQ_kaJEpB0L';
@@ -443,7 +457,7 @@ function addToCart(id){const p=products.find(x=>x.id===Number(id));if(!p)return;
 function toggleFavorite(id){id=Number(id);if(favorites.has(id)){favorites.delete(id);toast('Убрано из избранного')}else{favorites.add(id);toast('Добавлено в избранное')}saveStore();renderProducts()}
 function renderCart(){
  const qty=cart.reduce((s,x)=>s+x.qty,0),total=cart.reduce((s,x)=>{const p=products.find(p=>p.id===x.id);return s+(p?Number(p.price)*x.qty:0)},0);
- $('cartCount').textContent=qty;$('cartTotal').textContent=money(total);
+ $('cartCount').textContent=qty;$('cartTotal').textContent=money(total);$('cartTop').classList.toggle('cart-has-items',qty>0);$('navCart').classList.toggle('cart-has-items',qty>0);
  const items=cart.filter(x=>products.some(p=>p.id===x.id));
  if(!items.length){$('cartList').innerHTML='<div class="empty">Корзина пока пуста.<br>Добавь сюда понравившиеся товары.</div>';$('checkoutOpen').disabled=true;$('checkoutOpen').style.opacity='.45';return}
  $('checkoutOpen').disabled=false;$('checkoutOpen').style.opacity='1';
@@ -601,6 +615,21 @@ setInterval(()=>{if($('profileModal').classList.contains('open'))refreshProfileO
 // Карусель преимуществ: автолистание и точки синхронно со слайдом.
 (function(){const viewport=$('benefitsViewport'),dots=[...document.querySelectorAll('[data-benefit]')];if(!viewport||!dots.length)return;let index=0,timer=null,frame=false;const paint=()=>dots.forEach((d,i)=>d.classList.toggle('active',i===index));function go(n,behavior='smooth'){index=(n+dots.length)%dots.length;viewport.scrollTo({left:index*viewport.clientWidth,behavior});paint()}function start(){if(timer)clearInterval(timer);timer=setInterval(()=>go(index+1),3000)}function pause(){if(timer)clearInterval(timer);timer=null}viewport.addEventListener('scroll',()=>{if(frame)return;frame=true;requestAnimationFrame(()=>{index=Math.max(0,Math.min(dots.length-1,Math.round(viewport.scrollLeft/(viewport.clientWidth||1))));paint();frame=false})},{passive:true});dots.forEach(d=>d.addEventListener('click',()=>{go(Number(d.dataset.benefit));start()}));viewport.addEventListener('pointerdown',pause,{passive:true});window.addEventListener('pointerup',()=>{if(!document.hidden)start()},{passive:true});window.addEventListener('resize',()=>go(index,'auto'));document.addEventListener('visibilitychange',()=>document.hidden?pause():start());start()})();
 
+
+
+// Кнопка возврата наверх появляется ближе к концу страницы.
+(function(){
+ const button=$('backToTop');
+ if(!button)return;
+ const update=()=>{
+  const remaining=document.documentElement.scrollHeight-(window.scrollY+window.innerHeight);
+  button.classList.toggle('visible',window.scrollY>250&&remaining<900);
+ };
+ window.addEventListener('scroll',update,{passive:true});
+ window.addEventListener('resize',update);
+ button.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+ update();
+})();
 
 const PUBLISHER_MODE=new URLSearchParams(location.search).get('publisher')==='1';
 if(PUBLISHER_MODE)document.body.classList.add('publisher-mode');
